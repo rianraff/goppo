@@ -1,9 +1,3 @@
-///
-//  Collection Card.swift
-//  GOPPO Practice
-//
-//  Created by Michelle PL on 25/03/25.
-//
 
 import SwiftUI
 
