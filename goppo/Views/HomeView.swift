@@ -10,7 +10,7 @@ struct HomeView: View {
         
         NavigationStack{
             ZStack {
-                Color("AppBackground") // Warna background
+                Color("BackgroundColor") // Warna background
                     .ignoresSafeArea()
                 
                 ScrollView{
