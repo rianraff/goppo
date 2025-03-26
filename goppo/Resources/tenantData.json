@@ -1,0 +1,26 @@
+[
+    {
+      "tenant_id": "1",
+      "name": "Kedai Aneka Rasa",
+      "operation_time": "08.00 - 14.00",
+      "image": "kedai_aneka_rasa.png",
+      "phone_number": "085777329932",
+      "qris_image": "qris_kedai_aneka_rasa",
+      "virtual_account" : {
+          "number" : "123456",
+          "bank" : "BCA"
+      }
+    },
+    {
+      "tenant_id": "2",
+      "name": "Bakso Bakwan Malang",
+      "operation_time": "08.00 - 14.00",
+      "image": "bakso_bakwan_malang.png",
+      "phone_number": "085777329932",
+      "qris_image": "qris_bakwan_bakwan_,malang",
+      "virtual_account" : {
+          "number" : "123456",
+          "bank" : "BCA"
+      }
+    }
+]

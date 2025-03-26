@@ -1,0 +1,187 @@
+[
+    {
+        "menu_id": "1",
+        "name": "Mie Ayam Komplit",
+        "price": "25000",
+        "image": "k_mie_ayam_komplit",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "2",
+        "name": "Mie Ayam Polos",
+        "price": "20000",
+        "image": "k_mie_ayam_polos",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "3",
+        "name": "Mie Ayam Dino",
+        "price": "30000",
+        "image": "k_mie_ayam_dino",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "4",
+        "name": "Mie Ayam Dino Komplit",
+        "price": "35000",
+        "image": "k_mie_ayam_dino_komplit",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "5",
+        "name": "Mie Yamin Komplit",
+        "price": "25000",
+        "image": "k_mie_yamin_komplit",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "6",
+        "name": "Mie Yamin",
+        "price": "25000",
+        "image": "k_mie_yamin",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "7",
+        "name": "Mie Lebar",
+        "price": "25000",
+        "image": "k_mie_lebar",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "8",
+        "name": "Kwetiau Kuah",
+        "price": "25000",
+        "image": "k_kwetiau_kuah",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "9",
+        "name": "Bihun Kuah",
+        "price": "25000",
+        "image": "k_bihun_kuah",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "10",
+        "name": "Bakso Kuah 1 Porsi",
+        "price": "20000",
+        "image": "k_bakso_kuah_1_porsi",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "11",
+        "name": "Bakso Kuah ½ Porsi",
+        "price": "10000",
+        "image": "k_bakso_kuah_setengah_porsi",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "12",
+        "name": "Pangsit Kuah 1 Porsi",
+        "price": "20000",
+        "image": "k_pangsit_kuah_1_porsi",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "13",
+        "name": "Pangsit Kuah ½ Porsi",
+        "price": "10000",
+        "image": "k_pangsit_kuah_setengah_porsi",
+        "category": "food",
+        "tenant_id": "1"
+    },
+    {
+        "menu_id": "14",
+        "name": "Bakso Besar",
+        "price": "28000",
+        "image": "b_bakso_besar",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "15",
+        "name": "Paket Komplit",
+        "price": "28000",
+        "image": "b_paket_komplit",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "16",
+        "name": "Bakwan Malang",
+        "price": "15000",
+        "image": "b_bakwan_malang",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "17",
+        "name": "Pangsit Goreng",
+        "price": "3000",
+        "image": "b_pangsit_goreng",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "18",
+        "name": "Bakso Goreng",
+        "price": "3000",
+        "image": "b_bakso_goreng",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "19",
+        "name": "Risol",
+        "price": "3000",
+        "image": "b_risol",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "20",
+        "name": "Pangsit Rebus",
+        "price": "3000",
+        "image": "b_pangsit_rebus",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "21",
+        "name": "Tahu",
+        "price": "3000",
+        "image": "b_tahu",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "22",
+        "name": "Siomay Kecil",
+        "price": "3000",
+        "image": "b_siomay_kecil",
+        "category": "food",
+        "tenant_id": "2"
+      },
+      {
+        "menu_id": "23",
+        "name": "Pilus",
+        "price": "3000",
+        "image": "b_pilus",
+        "category": "food",
+        "tenant_id": "2"
+      }
+
+]
