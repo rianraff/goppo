@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     var body: some View {
         Text("Hello, World!")
+        Image("b_bakso_besar")
     }
 }
 
