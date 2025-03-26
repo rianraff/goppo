@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Receipt_Page: View {
+struct ReceiptView: View {
     var body: some View {
         VStack {
             Text("Detail Pemesanan")
@@ -16,5 +16,5 @@ struct Receipt_Page: View {
 }
 
 #Preview {
-    Receipt_Page()
+    ReceiptView()
 }
