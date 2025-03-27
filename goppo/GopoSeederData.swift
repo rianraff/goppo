@@ -1,12 +1,11 @@
 //
-//  GopoSeederData.swift
+//  MenuData.swift
 //  goppo
 //
 //  Created by Aldrian Raffi Wicaksono on 27/03/25.
 //
 
 import Foundation
-
 
 #if DEBUG
 class GopoSeederData {

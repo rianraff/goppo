@@ -1,27 +1,25 @@
-import Foundation
+import SwiftData
+import SwiftUI
 
-struct Menu: Codable, Identifiable {
+@Model
+class Menu {
     var id: Int
     var name: String
     var price: Double
-    var image: String
     var category: String
-    var tenant_id: String
+    var tenant_id: Int
     
-    init(
-        id: Int,
-        name: String,
-        price: Double,
-        image: String,
-        category: String,
-        tenant_id: String
-    ) {
-        self.id = id
-        self.name = name
-        self.price = price
-        self.image = image
-        self.category = category
-        self.tenant_id = tenant_id
-        GopoSeederData.seed()
+    private var imageName: String
+    var image: Image {
+        Image(imageName)
     }
+    
+    init(id: Int, name: String, price: Double, imageName: String, category: String, tenant_id: Int) {
+            self.id = id
+            self.name = name
+            self.price = price
+            self.imageName = imageName  // Set private property
+            self.category = category
+            self.tenant_id = tenant_id
+        }
 }
