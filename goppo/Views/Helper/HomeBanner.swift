@@ -4,7 +4,6 @@ import SwiftUI
 struct HomeBanner: View {
     var body: some View {
         
-        ZStack{
             HStack{
                 Text("GOPPO")
                     .font(.largeTitle)
@@ -27,7 +26,6 @@ struct HomeBanner: View {
                     }
                 }
             }
-        }
     }
 }
 
