@@ -12,7 +12,7 @@ struct ReceiptView: View {
         HStack {
             Image(systemName: "chevron.backward")
             Spacer()
-            Text("Tenant")
+            Text("Pesanan Saya")
                 .font(.headline)
                 .fontWeight(.semibold)
             Spacer()
