@@ -6,10 +6,8 @@
       "image": "kedai_aneka_rasa.png",
       "phone_number": "085777329932",
       "qris_image": "qris_kedai_aneka_rasa",
-      "virtual_account" : {
-          "number" : "123456",
-          "bank" : "BCA"
-      }
+      "va_number" : "123456",
+      "va_bank" : "BCA"
     },
     {
       "tenant_id": "2",
@@ -18,9 +16,8 @@
       "image": "bakso_bakwan_malang.png",
       "phone_number": "085777329932",
       "qris_image": "qris_bakwan_bakwan_,malang",
-      "virtual_account" : {
-          "number" : "123456",
-          "bank" : "BCA"
-      }
+      "virtual_account" :
+      "va_number" : "123456",
+      "va_bank" : "BCA"
     }
 ]

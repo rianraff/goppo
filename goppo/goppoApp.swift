@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
-import SwiftData
+import Foundation
 
 @main
 struct goppoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(menu: menu)
         }
     }
 }

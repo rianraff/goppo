@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
-import SwiftData
+import Foundation
 
 struct ContentView: View {
+    
+    @State var menu: Menu
+    
     var body: some View {
-        Text("Hello, World!")
+        Text(menu.name)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(menu: menu[0])
 }
