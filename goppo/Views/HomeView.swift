@@ -3,6 +3,7 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @Query var tenants: [Tenant]
     @Environment(\.modelContext) private var modelContext
     
     private let columns = [
@@ -44,8 +45,8 @@ struct HomeView: View {
                         
                         //ini jadi grid view
                         LazyVGrid(columns: columns, spacing: 8) {
-                            ForEach(0..<4, id: \.self) { _ in
-                                Tenant_Card()
+                                ForEach(tenants, id: \.id) { tenant in
+                                Tenant_Card(tenant: tenant)
                             }
                         }
                     }

@@ -1,7 +1,9 @@
 
 import SwiftUI
+import SwiftData
 
 struct Tenants_Page: View {
+    
     @State private var selectedCategory = 0
     
     var body: some View {
