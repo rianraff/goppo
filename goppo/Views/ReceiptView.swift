@@ -39,11 +39,11 @@ struct ReceiptView: View {
                     //Total
                     HStack {
                         Text("Total Harga")
-                            .font(.system(size: 22, weight: .bold, design: .default))
+                            .font(.system(size: 20, weight: .bold, design: .default))
                             .foregroundStyle(Color.accentColor)
                         Spacer()
                         Text("Rp25.000")
-                            .font(.system(size: 22, weight: .bold, design: .default))
+                            .font(.system(size: 20, weight: .bold, design: .default))
                             .foregroundStyle(Color.accentColor)
                     }
                 }
