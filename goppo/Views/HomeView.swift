@@ -1,7 +1,10 @@
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+    @Environment(\.modelContext) private var modelContext
+    
     private let columns = [
         GridItem(.adaptive(minimum: 170))
     ]
@@ -49,6 +52,10 @@ struct HomeView: View {
                     .padding()
                 }
             }
+        }
+        .task {
+            await seedMenuDatabase(context: modelContext)
+            await seedTenantDatabase(context: modelContext)
         }
     }
 }
