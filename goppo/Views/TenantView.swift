@@ -6,29 +6,26 @@ struct Tenants_Page: View {
     
     var body: some View {
         
-            HStack{
-                Image(systemName: "chevron.backward")
-                
-                Spacer()
-                
-                Text("Tenant")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-            }
-            .padding()
+        //ini nanti pake navigation link
+        HStack{
+            Image(systemName: "chevron.backward")
             
-            Tenant_Banner()
+            Spacer()
             
-            HStack{
-                Text("Daftar Menu")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-            .padding([.top, .leading, .trailing])
+            Text("Tenant")
+                .font(.headline)
+                .fontWeight(.semibold)
             
+            Spacer()
+        }
+        .padding()
+        
+        Tenant_Banner()
+        
+        VStack(alignment: .leading, spacing: 16.0){
+            Text("Daftar Menu")
+                .font(.title3)
+                .fontWeight(.semibold)
             
             Picker("Category", selection: $selectedCategory) {
                 Text("Semua").tag(0)
@@ -36,15 +33,14 @@ struct Tenants_Page: View {
                 Text("Minuman").tag(2)
             }
             .pickerStyle(.segmented)
-            .padding()
             
-        ScrollView{
-            VStack {
-                ForEach(0..<5, id: \.self) { _ in
-                    Menu_Row()
+            ScrollView{
+                VStack {
+                    ForEach(0..<5, id: \.self) { _ in
+                        Menu_Row()
+                    }
                 }
             }
-        }
             
             HStack{
                 Button(action: {
@@ -72,9 +68,9 @@ struct Tenants_Page: View {
                     .foregroundStyle(.white)
                     .cornerRadius(10)
                 }
+            }
         }
-        .padding(.horizontal)
-        
+        .padding()
     }
 }
 

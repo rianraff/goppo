@@ -17,7 +17,7 @@ struct Tenant_Banner: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 
-                Text("0812345678")
+                Text("Whatsapp : +62812345678")
                     .foregroundColor(Color.white)
                 
             }

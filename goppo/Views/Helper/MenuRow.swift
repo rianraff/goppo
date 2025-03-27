@@ -8,7 +8,20 @@ struct StepperView: View {
 
     var body: some View {
         
-        VStack(alignment: .trailing){
+        HStack(){
+            
+            ZStack{
+                Color.white
+                Text("\(value)")
+            }
+            .frame(width: 32, height: 32)
+            .cornerRadius(8)
+            .overlay(
+            RoundedRectangle(cornerRadius: 8)
+            .inset(by: 0.5)
+            .stroke(Color.accent, lineWidth: 1)
+            )
+            
             Stepper(
                 value: $value,
                 in: range,
@@ -16,11 +29,13 @@ struct StepperView: View {
             ) {
                 Text("")
             }
+            .labelsHidden()
             
-            Text("Jumlah : \(value)")
-                .font(.subheadline)
+//            Text("Jumlah : \(value)")
+//                .font(.subheadline)
+//                .foregroundStyle(.accent)
+            
         }
-        .padding(10)
     }
 }
 
@@ -49,7 +64,6 @@ var body: some View {
             
             StepperView()
         }
-        .padding(.horizontal, 16)
     }
 }
 
