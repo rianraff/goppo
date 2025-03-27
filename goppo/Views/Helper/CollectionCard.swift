@@ -22,7 +22,7 @@ struct Collection_Card: View {
                     Text("Rp 15.000")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
-                    }
+                }
                 
                 Button(action: {} ){
                     Text("Pesan")
@@ -33,10 +33,9 @@ struct Collection_Card: View {
                         .background(Color.accent)
                         .cornerRadius(12)
                 }
-                }
             }
-        .frame(width: 140, height: 232)
-        
+            .frame(width: 140, height: 232)
+        }
     }
 }
 
