@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CollectionRow: View {
+    
     var body: some View {
         
         ZStack{
