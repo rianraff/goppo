@@ -39,6 +39,8 @@ struct ReminderView: View {
             
             Reminder()
             
+            Spacer()
+            
             Button(action: {} ){
                 Text("Simpan")
                     .foregroundStyle(.white)

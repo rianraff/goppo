@@ -62,8 +62,8 @@ struct Tenants_Page: View {
                         Text("Rp 15.000")
                             .fontWeight(.semibold)
                     }
-                    .frame(maxWidth: .infinity) // Agar button melebar
                     .padding()
+                    .frame(height:44)
                     .background(Color.accentColor)
                     .foregroundStyle(.white)
                     .cornerRadius(10)
