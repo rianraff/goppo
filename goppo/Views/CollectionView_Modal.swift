@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModalCollectionView: View {
+struct CollectionViewModal: View {
     @State private var showModal = false
 
     var body: some View {
@@ -18,7 +18,7 @@ struct ModalCollectionView: View {
         }
         .sheet(isPresented: $showModal) {
             ModalView()
-                .presentationDetents([.medium]) // Ukuran modal bisa medium atau large
+                .presentationDetents([.height(500)])
                 .presentationDragIndicator(.visible) // Menampilkan indikator drag
         }
     }
@@ -27,7 +27,8 @@ struct ModalCollectionView: View {
 struct ModalView: View {
     var body: some View {
         VStack(spacing: 16.0) {
-            VStack (alignment: .leading, spacing: 8.0) {
+            Spacer()
+            VStack (alignment: .leading, spacing: 16.0) {
                 Text("Simpan ke Koleksi")
                     .frame(width: 361, height: 20, alignment: .leading)
                     .font(.system(size: 22, weight: .bold, design: .default))
@@ -37,18 +38,23 @@ struct ModalView: View {
                     .frame(width: 361, height: 20, alignment: .leading)
                     .font(.system(size: 15, weight: .regular, design: .default))
                     .multilineTextAlignment(.leading)
-                    .foregroundStyle(.accent)
+                    .foregroundStyle(.secondary)
             }
+            .padding(.leading, 16.0)
             
-            VStack {
-                CollectionRadio()
-                CollectionRadio()
-                CollectionRadio()
+            ScrollView {
+                VStack {
+                    CollectionRadio()
+                    CollectionRadio()
+                    CollectionRadio()
+                }
             }
+            .frame(height: 270)
+            
             VStack {
                 Button(action: {} ){
                     HStack{
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: "plus")
                         Text("Tambah Koleksi Baru")
                     }
                     .foregroundStyle(Color.accentColor)
@@ -70,13 +76,12 @@ struct ModalView: View {
                     .font(.system(size: 16, weight: .semibold, design: .default))
                     .fontWeight(.semibold)
                     .frame(width: 361, height: 48)
-                    .background(Color.black)
+                    .background(Color.accent)
+                    .cornerRadius(8)
                     
                     
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .center) // Membatasi VStack agar tidak memanjang ke bawah
-            .padding(.bottom, 16) // Memberi jarak dari bawah modal
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
@@ -86,5 +91,5 @@ struct ModalView: View {
 
 
 #Preview {
-    ModalCollectionView()
+    CollectionViewModal()
 }

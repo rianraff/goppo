@@ -15,12 +15,21 @@ struct RadioButton: View {
         Button(action: action) {
             HStack {
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(isSelected ? .accentColor : .accentColor)
+                    .foregroundColor(isSelected ? .accentColor : .gray)
             }
         }
     }
 }
 
+/*
+struct RadioButton: View {
+    let isSelected: Bool
+
+    var body: some View {
+        Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
+            .foregroundColor(isSelected ? .accentColor : .gray)
+            .animation(.easeInOut, value: isSelected)
+*/
 
 struct CollectionRadio: View {
     @State private var isSelected: Bool = false // State untuk radio button
@@ -65,9 +74,13 @@ struct CollectionRadio: View {
         .background(Color.white)
         .cornerRadius(10)
         .overlay(
-            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 2)
+            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
                 )
+        .onTapGesture {
+            isSelected.toggle()
+        }
         .animation(.easeInOut, value: isSelected)
+        
     }
 }
 
