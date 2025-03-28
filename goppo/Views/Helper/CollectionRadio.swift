@@ -61,10 +61,13 @@ struct CollectionRadio: View {
             }
             .padding()
         }
-        .frame(width: 361, height: 78)
-        .background(Color.gray)
+        .frame(width: 361, height: 84)
+        .background(Color.white)
         .cornerRadius(10)
-
+        .overlay(
+            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 2)
+                )
+        .animation(.easeInOut, value: isSelected)
     }
 }
 
