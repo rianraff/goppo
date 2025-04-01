@@ -14,7 +14,16 @@ struct goppoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            Tenants_Page(tenant: Tenant(id: 1,
+                                        name: "Kedai Aneka Rasa",
+                                        operation_time: "08.00 - 14.00",
+                                        phone_number: "085777129912",
+                                        va_number: "123456",
+                                        va_bank: "qris_kedai_aneka_rasa",
+                                        imageName : "kedai_aneka_rasa",
+                                        qrisImageName : "BCA"
+                                       )
+            )
                 .modelContainer(for: [Menu.self, Tenant.self], inMemory: false)
         }
     }

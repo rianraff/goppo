@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct ReceiptRow: View {
+    var menu: Menu
+    var quantity: Int
+    
     var body: some View {
         HStack(spacing: 20) {
-            Text("1x")
-                .font(.system(size: 18, weight: .regular, design: .default))
+            Text("\(quantity)x")
+                .font(.system(size: 18))
             
-            HStack {
-                Text("Bakso Polos")
-                    .font(.system(size: 18, weight: .regular, design: .default))
-                Spacer()
-            }
+            Text(menu.name)
+                .font(.system(size: 18))
             
-            Text("Rp25.000")
-                .font(.system(size: 18, weight: .regular, design: .default))
+            Spacer()
+            
+            Text("Rp \(Int(menu.price) * quantity)")
+                .font(.system(size: 18))
         }
     }
 }
 
-#Preview {
-    ReceiptRow()
-}
+//#Preview {
+//    ReceiptRow()
+//}
