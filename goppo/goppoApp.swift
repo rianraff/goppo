@@ -14,7 +14,7 @@ struct goppoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CollectionView()
+            HomeView()
                 .modelContainer(for: [Menu.self, Tenant.self], inMemory: false)
         }
     }

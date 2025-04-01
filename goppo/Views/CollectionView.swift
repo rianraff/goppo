@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CollectionView: View {
     let collections: [Collection] = [
-        Collection(id: 1, name: "Bakso Lovers", total_price: 50_000, imageName: "bakso_image"),
-        Collection(id: 2, name: "Mie Ayam Fans", total_price: 40_000, imageName: "mie_ayam_image")
+        Collection(id: 1, name: "Bakso Lovers", total_price: 50000, imageName: "bakso_image"),
+        Collection(id: 2, name: "Mie Ayam Fans", total_price: 40000, imageName: "mie_ayam_image")
     ]
     
     let collectionItems: [CollectionItem] = [
