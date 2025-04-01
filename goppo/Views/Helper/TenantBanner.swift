@@ -2,22 +2,23 @@
 import SwiftUI
 
 struct Tenant_Banner: View {
+    var tenant: Tenant
     var body: some View {
         
         ZStack{
-            Image("bakso_bakwan_malang")
+            tenant.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(maxWidth: 405, maxHeight: 200)
                 .clipped()
             
             VStack(alignment: .leading){
-                Text("Bakso Malang")
+                Text(tenant.name)
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 
-                Text("Whatsapp : +62812345678")
+                Text("Whatsapp : \(tenant.phone_number)")
                     .foregroundColor(Color.white)
                 
             }
@@ -27,5 +28,14 @@ struct Tenant_Banner: View {
 }
 
 #Preview {
-    Tenant_Banner()
+    Tenant_Banner(tenant: Tenant(id: 1,
+                                 name: "Kedai Aneka Rasa",
+                                 operation_time: "08.00 - 14.00",
+                                 phone_number: "085777129912",
+                                 va_number: "085777329932",
+                                 va_bank: "qris_kedai_aneka_rasa",
+                                 imageName : "kedai_aneka_rasa",
+                                 qrisImageName : "BCA"
+                                )
+     )
 }

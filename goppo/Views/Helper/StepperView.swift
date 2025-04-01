@@ -1,37 +1,34 @@
+//
+//  StepperView.swift
+//  goppo
+//
+//  Created by Aldrian Raffi Wicaksono on 01/04/25.
+//
+import SwiftUI
+
 struct StepperView: View {
-    @State private var value = 0
+    @Binding var quantity: Int  // Use only the binding from parent
+    
     let step = 1
     let range = 0...100
 
     var body: some View {
-        
-        HStack(){
-            
-            ZStack{
+        HStack {
+            ZStack {
                 Color.white
-                Text("\(value)")
+                Text("\(quantity)") // Show the actual quantity
             }
             .frame(width: 32, height: 32)
             .cornerRadius(8)
             .overlay(
-            RoundedRectangle(cornerRadius: 8)
-            .inset(by: 0.5)
-            .stroke(Color.accent, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.accentColor, lineWidth: 1)
             )
             
-            Stepper(
-                value: $value,
-                in: range,
-                step: step
-            ) {
+            Stepper(value: $quantity, in: range, step: step) {
                 Text("")
             }
             .labelsHidden()
-            
-//            Text("Jumlah : \(value)")
-//                .font(.subheadline)
-//                .foregroundStyle(.accent)
-            
         }
     }
 }

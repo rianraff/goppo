@@ -182,5 +182,21 @@
         "imageName": "b_pilus",
         "category": "food",
         "tenant_id": 2
+    },
+    {
+        "id": 24,
+        "name": "Es Teh Manis",
+        "price": 3000,
+        "imageName": "b_teh_manis",
+        "category": "drink",
+        "tenant_id": 2
+    },
+    {
+        "id": 25,
+        "name": "Es Jeruk",
+        "price": 3000,
+        "imageName": "k_jeruk",
+        "category": "drink",
+        "tenant_id": 1
     }
 ]

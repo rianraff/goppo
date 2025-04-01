@@ -1,50 +1,14 @@
 
 import SwiftUI
 
-struct StepperView: View {
-    @State private var value = 0
-    let step = 1
-    let range = 0...100
-
-    var body: some View {
-        
-        HStack(){
-            
-            ZStack{
-                Color.white
-                Text("\(value)")
-            }
-            .frame(width: 32, height: 32)
-            .cornerRadius(8)
-            .overlay(
-            RoundedRectangle(cornerRadius: 8)
-            .inset(by: 0.5)
-            .stroke(Color.accent, lineWidth: 1)
-            )
-            
-            Stepper(
-                value: $value,
-                in: range,
-                step: step
-            ) {
-                Text("")
-            }
-            .labelsHidden()
-            
-//            Text("Jumlah : \(value)")
-//                .font(.subheadline)
-//                .foregroundStyle(.accent)
-            
-        }
-    }
-}
-
 struct Menu_Row: View {
+    var menu: Menu
+    @Binding var quantity: Int
 
 var body: some View {
         HStack{
             
-            Image("b_bakso_besar")
+            menu.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 64, height: 64)
@@ -53,20 +17,30 @@ var body: some View {
                 .clipped()
             
             VStack(alignment: .leading){
-                Text("Bakso Besar")
+                Text(menu.name)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                Text("Rp 28.000")
+                Text(menu.price, format: .number.precision(.fractionLength(0)))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             Spacer()
             
-            StepperView()
+            StepperView(quantity: $quantity)
         }
     }
 }
 
 #Preview {
-    Menu_Row()
+//    @Binding var quantity: Int
+//    
+//    Menu_Row(menu:
+//                Menu(id: 1,
+//                        name: "Mie Ayam Komplit",
+//                        price: 25000,
+//                        imageName: "k_mie_ayam_komplit",
+//                        category: "food",
+//                        tenant_id: 1),
+//             quantity: $quantity
+//    )
 }
