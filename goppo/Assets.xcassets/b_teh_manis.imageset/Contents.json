@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "b_teh_manis.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "k_kwetiaw_kuah.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
