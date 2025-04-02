@@ -33,7 +33,6 @@ struct HomeView: View {
     
     var body: some View {
         
-        //NavigationStack{
             ZStack {
                 Color("BackgroundColor") // Warna background
                     .ignoresSafeArea()
@@ -47,6 +46,7 @@ struct HomeView: View {
                             .padding(10)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
+                            .animation(.easeInOut(duration: 0.3), value: searchText)
                         
                         Text("Pesanan Andalanmu!")
                             .font(.title2)
@@ -78,7 +78,8 @@ struct HomeView: View {
                     }
                     .padding()
                 }
-            //}
+            .navigationTitle("Home")
+            .navigationBarHidden(true)
             .task {
                 await seedMenuDatabase(context: modelContext)
                 await seedTenantDatabase(context: modelContext)

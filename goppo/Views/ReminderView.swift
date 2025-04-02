@@ -11,20 +11,6 @@ struct ReminderView: View {
     var body: some View {
         
         VStack{
-            //ini nanti pake navigation link
-            HStack{
-                Image(systemName: "chevron.backward")
-                
-                Spacer()
-                
-                Text("Pengingat")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-            }
-            .padding()
-            
             VStack(alignment: .leading, spacing: 16.0){
                 Text("Atur Pengingat")
                     .font(.title2)
@@ -52,11 +38,12 @@ struct ReminderView: View {
                     .background(Color.accent)
                     .cornerRadius(8)
             }
+            Spacer()
         }
-        Spacer()
+        .padding()
     }
 }
 
-#Preview {
-    ReminderView()
-}
+//#Preview {
+//    ReminderView()
+//}

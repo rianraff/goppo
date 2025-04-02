@@ -13,14 +13,13 @@ struct HomeBanner: View {
                 Spacer()
                 
                 HStack{
-                    Text("Atur Pengingat")
-                        .font(.subheadline)
-                        .fontWeight(.regular)
-                        .foregroundStyle(.accent)
                     
-                    Button(action: {
+                    NavigationLink(destination: ReminderView()) {
+                        Text("Atur Pengingat")
+                            .font(.subheadline)
+                            .fontWeight(.regular)
+                            .foregroundStyle(.accent)
                         
-                    }) {
                         Image(systemName: "bell.fill")
                             .foregroundStyle(.accent)
                     }
