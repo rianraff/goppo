@@ -21,17 +21,10 @@ struct Tenants_Page: View {
     }
 
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             VStack {
                 // Back Navigation Header
-                HStack {
-                    Spacer()
-                    Text("Tenant")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    Spacer()
-                }
-                .padding()
+                Spacer()
                 
                 Tenant_Banner(tenant: tenant)
                 
@@ -87,10 +80,14 @@ struct Tenants_Page: View {
                             .cornerRadius(10)
                         }
                     }
+                    //Navigation Title
+                    .navigationTitle("Tenant")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .padding()
                 }
                 .padding()
             }
-        }
+        //}
     }
 
     // ✅ Binding Helper Function

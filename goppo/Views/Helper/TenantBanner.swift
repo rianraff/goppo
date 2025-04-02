@@ -5,7 +5,7 @@ struct Tenant_Banner: View {
     var tenant: Tenant
     var body: some View {
         
-        ZStack{
+        ZStack(alignment: .bottomLeading){
             tenant.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -20,9 +20,9 @@ struct Tenant_Banner: View {
                 
                 Text("Whatsapp : \(tenant.phone_number)")
                     .foregroundColor(Color.white)
-                
             }
-            .offset(x: -70, y: 60)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
         }
     }
 }

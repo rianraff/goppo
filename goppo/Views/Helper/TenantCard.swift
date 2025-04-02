@@ -15,18 +15,20 @@ struct Tenant_Card: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 160.5, height: 160.5)
-                    .cornerRadius(10)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 VStack(alignment: .leading, spacing: 4.0){
                     Text(tenant.name)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
+
                     HStack{ Image(systemName: "clock")
                         .font(.body)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.gray)
                         Text(tenant.operation_time)
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.gray)
                     }
                 }
             }
@@ -36,5 +38,5 @@ struct Tenant_Card: View {
 }
 
 #Preview {
-    Tenant_Card(tenant: Tenant(id: 1, name: "Bakso Malang", operation_time: "8.00 AM - 12.00 PM", phone_number: "08123456789", va_number: "1234567890", va_bank: "BCA", imageName: "bakso_bakwan_malang", qrisImageName: "qris_dummy"))
+    Tenant_Card(tenant: Tenant(id: 1, name: "Bakso Bakwan Malang", operation_time: "8.00 AM - 12.00 PM", phone_number: "08123456789", va_number: "1234567890", va_bank: "BCA", imageName: "bakso_bakwan_malang", qrisImageName: "qris_dummy"))
 }

@@ -33,7 +33,7 @@ struct HomeView: View {
     
     var body: some View {
         
-        NavigationStack{
+        //NavigationStack{
             ZStack {
                 Color("BackgroundColor") // Warna background
                     .ignoresSafeArea()
@@ -69,16 +69,16 @@ struct HomeView: View {
                         
                         //ini jadi grid view
                         LazyVGrid(columns: columns, spacing: 8) {
-                            ForEach(tenants, id: \.id) { tenant in
+                            ForEach(filteredTenants, id: \.id) { tenant in
                                 NavigationLink(destination: Tenants_Page(tenant: tenant)) {
                                     Tenant_Card(tenant: tenant)
                                 }
                             }
                         }
-                        .padding()
                     }
+                    .padding()
                 }
-            }
+            //}
             .task {
                 await seedMenuDatabase(context: modelContext)
                 await seedTenantDatabase(context: modelContext)
@@ -87,6 +87,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}
