@@ -22,16 +22,6 @@ struct ReceiptView: View {
     }
     
     var body: some View {
-        VStack {
-            // Back Navigation Header
-            HStack {
-                Spacer()
-                Text("Pesanan Saya")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-            .padding()
             
             ScrollView {
                 VStack (spacing: 24) {
@@ -109,7 +99,10 @@ struct ReceiptView: View {
                 }
                 .padding(.horizontal, 16.0)
             }
-        }
+        //Navigation Title
+        .navigationTitle("Pesanan Saya")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
     }
 }
 

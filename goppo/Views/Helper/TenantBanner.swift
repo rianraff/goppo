@@ -22,7 +22,7 @@ struct Tenant_Banner: View {
                     .foregroundColor(Color.white)
                 
             }
-            .offset(x: -90, y: 60)
+            .offset(x: -70, y: 60)
         }
     }
 }

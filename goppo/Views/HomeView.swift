@@ -21,6 +21,16 @@ struct HomeView: View {
         GridItem(.adaptive(minimum: 170))
     ]
     
+    @State private var searchText: String = ""
+    
+    var filteredTenants: [Tenant] {
+           if searchText.isEmpty {
+               return tenants
+           } else {
+               return tenants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+           }
+       }
+    
     var body: some View {
         
         NavigationStack{
@@ -33,7 +43,7 @@ struct HomeView: View {
                         
                         HomeBanner()
                         
-                        TextField("Cari Tenant..", text: .constant(""))
+                        TextField("Cari Tenant..", text: $searchText)
                             .padding(10)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
@@ -59,18 +69,20 @@ struct HomeView: View {
                         
                         //ini jadi grid view
                         LazyVGrid(columns: columns, spacing: 8) {
-                                ForEach(tenants, id: \.id) { tenant in
-                                Tenant_Card(tenant: tenant)
+                            ForEach(tenants, id: \.id) { tenant in
+                                NavigationLink(destination: Tenants_Page(tenant: tenant)) {
+                                    Tenant_Card(tenant: tenant)
+                                }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
-        }
-        .task {
-            await seedMenuDatabase(context: modelContext)
-            await seedTenantDatabase(context: modelContext)
+            .task {
+                await seedMenuDatabase(context: modelContext)
+                await seedTenantDatabase(context: modelContext)
+            }
         }
     }
 }
