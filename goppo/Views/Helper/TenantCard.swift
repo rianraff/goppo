@@ -5,35 +5,49 @@ struct Tenant_Card: View {
     var tenant: Tenant
     
     var body: some View {
-        
-        ZStack{
+    
+        ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white) 
+                .fill(Color.white)
+                .frame(width: 176.5, height: 234.5) // Pastikan ukuran tetap
             
-            VStack(alignment: .leading, spacing: 10.0){
-                tenant.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 160.5, height: 160.5)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            VStack(alignment: .leading, spacing: 10.0) {
                 
-                VStack(alignment: .leading, spacing: 4.0){
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10) // Bentuk mengikuti Rectangle
+                        .fill(Color.clear)
+                    
+                    tenant.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity) // Mengikuti ukuran rectangle
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .frame(width: 160.5, height: 160.5) // Ukuran tetap
+                .padding(.horizontal, 8) // Padding kanan-kiri
+                .padding(.top, 8) // Padding atas
+                
+                VStack(alignment: .leading, spacing: 4.0) {
                     Text(tenant.name)
                         .font(.body)
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
-
-                    HStack{ Image(systemName: "clock")
-                        .font(.body)
-                        .foregroundStyle(.gray)
+                        .lineLimit(2)
+                    
+                    HStack {
+                        Image(systemName: "clock")
+                            .font(.body)
+                            .foregroundStyle(.gray)
                         Text(tenant.operation_time)
-                        .font(.footnote)
-                        .foregroundStyle(.gray)
+                            .font(.footnote)
+                            .foregroundStyle(.gray)
                     }
                 }
+                .padding(.horizontal, 8) // Padding kanan-kiri
+                .padding(.bottom, 8) // Padding bawah
             }
         }
-        .frame(width: 176.5, height: 234.5)
+        .frame(width: 176.5, height: 234.5) // Pastikan frame utama tidak berubah
     }
 }
 
