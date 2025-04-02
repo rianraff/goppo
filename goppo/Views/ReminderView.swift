@@ -41,7 +41,9 @@ struct ReminderView: View {
             
             Spacer()
             
-            Button(action: {} ){
+            Button(action: {
+                
+            } ){
                 Text("Simpan")
                     .foregroundStyle(.white)
                     .font(.subheadline)
