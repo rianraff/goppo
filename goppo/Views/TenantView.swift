@@ -21,7 +21,7 @@ struct Tenants_Page: View {
     }
 
     var body: some View {
-        //NavigationStack {
+        
             VStack {
                 // Back Navigation Header
                 Spacer()
@@ -87,7 +87,6 @@ struct Tenants_Page: View {
                 }
                 .padding()
             }
-        //}
     }
 
     // ✅ Binding Helper Function

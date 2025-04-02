@@ -29,8 +29,8 @@ struct ReceiptView: View {
                         // Order Details
                         HStack {
                             Text("Detail Pemesanan")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                                .font(.title2)
+                                .fontWeight(.semibold)
                             Spacer()
                         }
                         
@@ -45,13 +45,13 @@ struct ReceiptView: View {
                         // Total
                         HStack {
                             Text("Total Harga")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                                .font(.title2)
+                                .fontWeight(.semibold)
                                 .foregroundStyle(Color.accentColor)
                             Spacer()
                             Text("Rp \(totalPrice)")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                                .font(.title2)
+                                .fontWeight(.semibold)
                                 .foregroundStyle(Color.accentColor)
                         }
                     }
@@ -62,8 +62,8 @@ struct ReceiptView: View {
                         // Payment Info
                         HStack {
                             Text("Info Pembayaran")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                                .font(.title2)
+                                .fontWeight(.semibold)
                             Spacer()
                         }
                         
@@ -97,12 +97,8 @@ struct ReceiptView: View {
                         )
                     }
                 }
-                .padding(.horizontal, 16.0)
+                .padding()
             }
-        //Navigation Title
-        .navigationTitle("Pesanan Saya")
-        .navigationBarTitleDisplayMode(.inline)
-        .padding()
     }
 }
 

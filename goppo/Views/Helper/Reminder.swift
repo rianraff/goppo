@@ -10,16 +10,14 @@ import SwiftUI
 struct Reminder: View {
     var body: some View {
         
-        HStack{
-            Text("Ulangi Setiap")
-            
-            Spacer()
-            
-            Button(action: {}){
-                Image(systemName: "chevron.right")
+            HStack{
+                Text("Ulangi Setiap")
+                Spacer()
+                NavigationLink(destination: RepeatView()) {
+                    Image(systemName: "chevron.right")
+                }
             }
-        }
-        .padding()
+            .padding()
     }
 }
 

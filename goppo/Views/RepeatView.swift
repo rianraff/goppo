@@ -19,26 +19,12 @@ struct RepeatView: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            //ini nanti pake navigation link
-            HStack{
-                Image(systemName: "chevron.backward")
-                
-                Spacer()
-                
-                Text("Atur Pengingat")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-            }
-            .padding()
-            
+        VStack(alignment: .leading, spacing: 16) {
             
             ForEach(0..<selectedDays.count, id: \ .self) { index in
                 HStack {
                     Text("Setiap \(selectedDays[index].0)")
-                        .font(.body)
+                        .font(.subheadline)
                     Spacer()
                     Image(systemName: selectedDays[index].1 ? "checkmark.circle.fill" : "circle")
                         .foregroundColor(selectedDays[index].1 ? .accentColor : .gray)
@@ -46,11 +32,12 @@ struct RepeatView: View {
                             selectedDays[index].1.toggle()
                         }
                 }
-                .padding(.horizontal)
             }
-            
             Spacer()
         }
+        //Navigation Title
+        .navigationTitle("Atur Pengingat")
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
     }
 }
