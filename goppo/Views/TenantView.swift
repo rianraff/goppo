@@ -89,11 +89,17 @@ struct Tenants_Page: View {
             }
     }
 
-    // ✅ Binding Helper Function
     private func binding(for menuID: Int) -> Binding<Int> {
         return Binding(
             get: { order[menuID, default: 0] },
-            set: { order[menuID] = $0 }
+            set: { newQuantity in
+                if newQuantity > 0 {
+                    order[menuID] = newQuantity
+                } else {
+                    order.removeValue(forKey: menuID) // Removes the item when quantity is 0
+                }
+            }
         )
     }
+
 }

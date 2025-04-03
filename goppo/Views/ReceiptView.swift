@@ -11,6 +11,8 @@ struct ReceiptView: View {
     var order: [Int: Int]  // Received from Tenants_Page
     var menus: [Menu]  // Pass menus to match IDs
 
+    @State private var isSharing = false
+    
     var totalPrice: Int {
         order.reduce(0) { total, entry in
             let (menuID, quantity) = entry
@@ -20,6 +22,18 @@ struct ReceiptView: View {
             return total
         }
     }
+    
+    var orderSummary: String {
+        let items = order.compactMap { (menuID, quantity) -> String? in
+            if let menu = menus.first(where: { $0.id == menuID }) {
+                return "\(menu.name) (\(quantity))"
+            }
+            return nil
+        }
+        
+        return items.joined(separator: ", ") + "."
+    }
+
     
     var body: some View {
             
@@ -83,19 +97,24 @@ struct ReceiptView: View {
                     }
                     
                     // Share Button
-                    Button(action: {}) {
-                        HStack {
-                            Image(systemName: "square.and.arrow.up")
-                            Text("Share Order")
-                        }
-                        .foregroundStyle(Color.accentColor)
-                        .frame(width: 361, height: 48)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.accentColor, lineWidth: 3)
-                        )
-                    }
+                    Button(action: {
+                                            isSharing = true
+                                        }) {
+                                            HStack {
+                                                Image(systemName: "square.and.arrow.up")
+                                                Text("Share Order")
+                                            }
+                                            .foregroundStyle(Color.accentColor)
+                                            .frame(width: 361, height: 48)
+                                            .background(Color.white)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .stroke(Color.accentColor, lineWidth: 3)
+                                            )
+                                        }
+                                        .sheet(isPresented: $isSharing) {
+                                            ActivityViewController(activityItems: [orderSummary])
+                                        }
                 }
                 .padding()
             }
