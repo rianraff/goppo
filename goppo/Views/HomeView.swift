@@ -15,6 +15,8 @@ struct HomeView: View {
     ]
     
     @Query var tenants: [Tenant]
+    @Query var menus: [Menu]
+    
     @Environment(\.modelContext) private var modelContext
     
     private let columns = [
@@ -23,6 +25,8 @@ struct HomeView: View {
     
     @State private var searchText: String = ""
     @State private var showReminder = false
+    
+    @State private var showReminderSheet:Bool = false
     
     var filteredTenants: [Tenant] {
         if searchText.isEmpty {
@@ -41,13 +45,13 @@ struct HomeView: View {
             ScrollView{
                 VStack(alignment: .leading, spacing: 24.0){
                     
-                    HomeBanner(showReminder: $showReminder)
-                        .sheet(isPresented: $showReminder) {
-                            ReminderView(showReminder: $showReminder)
-                                .presentationDetents([.height(500)])
-                                .presentationDragIndicator(.visible)
-                        }
-                    
+                    //                    HomeBanner(showReminder: $showReminder)
+                    //                        .sheet(isPresented: $showReminder) {
+                    //                            ReminderView(showReminder: $showReminder)
+                    //                                .presentationDetents([.height(500)])
+                    //                                .presentationDragIndicator(.visible)
+                    //                        }
+                    //
                     TextField("Cari Tenant..", text: $searchText)
                         .padding(10)
                         .background(Color.gray.opacity(0.2))
@@ -58,13 +62,26 @@ struct HomeView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    ScrollView(.horizontal){
+                    VStack(spacing: 10){
+                        ScrollView(.horizontal){
+                            HStack{
+                                ForEach(collections, id: \.id) { collection in
+                                    Collection_Card(
+                                        collection: collection,
+                                        collectionItems: collectionItems,
+                                        menus: menus,
+                                        tenants: tenants
+                                    )
+                                }
+                            }
+                        }
+                        
                         HStack{
-                            ForEach(collections, id: \.id) { collection in
-                                Collection_Card(
-                                    collection: collection,
-                                    collectionItems: collectionItems
-                                )
+                            Spacer()
+                            NavigationLink(destination: CollectionView()){
+                                Text("Lihat Selengkapnya")
+                                    .font(.footnote)
+                                    .foregroundStyle(.gray)
                             }
                         }
                     }
@@ -83,17 +100,41 @@ struct HomeView: View {
                     }
                 }
                 .padding()
-            }
-            .navigationTitle("Home")
-            .navigationBarHidden(true)
-            .task {
-                await seedMenuDatabase(context: modelContext)
-                await seedTenantDatabase(context: modelContext)
+                //            .navigationTitle("Home")
+                //            .navigationBarHidden(true)
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Text("GOPPO")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.accent)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button {
+                            showReminderSheet = true
+                        } label: {
+                            HStack(spacing: 4){
+                                Text("Atur Pengingat")
+                                Image(systemName: "bell.fill")
+                            }
+                            .font(.subheadline)
+                            .foregroundStyle(.accent)
+                        }
+                    }
+                }
+                .sheet(isPresented: $showReminderSheet){
+                    ReminderView(showReminder: $showReminder)
+                }
+                .task {
+                    await seedMenuDatabase(context: modelContext)
+                    await seedTenantDatabase(context: modelContext)
+                }
             }
         }
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}

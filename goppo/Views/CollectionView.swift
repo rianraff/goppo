@@ -23,36 +23,27 @@ struct CollectionView: View {
         ZStack {
             Color("BackgroundColor")
                 .ignoresSafeArea()
-            
-            VStack {
-                // Navigation Header
-                HStack {
-                    Image(systemName: "chevron.backward")
-                    
-                    Spacer()
-                    
-                    Text("Pesanan Andalan")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                }
                 
+            VStack{
                 // List of Collections
-                VStack {
-                    ForEach(collections, id: \.id) { collection in
-                        CollectionRow(
-                            collection: collection,
-                            collectionItems: collectionItems
-                        )
+                ScrollView{
+                    VStack {
+                        ForEach(collections, id: \.id) { collection in
+                            CollectionRow(
+                                collection: collection,
+                                collectionItems: collectionItems
+                            )
+                        }
                     }
+                    Spacer()
                 }
-                Spacer()
             }
+            .navigationTitle("Pesanan Andalanmu")
+            .navigationBarTitleDisplayMode(.inline)
             .padding()
+            }
         }
     }
-}
 
 #Preview {
     CollectionView()

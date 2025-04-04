@@ -13,12 +13,12 @@ struct ReminderView: View {
     @State private var selectedTime = Date()
     @State private var repeatDays: [String] = []
     @State private var didLoadOnce = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 8.0) {
-                    Spacer()
                     Text("Atur Pengingat")
                         .font(.title2)
                         .fontWeight(.semibold)
@@ -27,13 +27,13 @@ struct ReminderView: View {
                         .font(.subheadline)
                         .foregroundStyle(.accent)
                 }
-                .padding(.bottom, 24)
                 
                 TimePicker(selectedTime: $selectedTime)
                 
                 NavigationLink(destination: RepeatView(repeatDays: $repeatDays)) {
                     HStack {
                         Text("Ulangi Setiap")
+                            .foregroundStyle(.black)
                         Spacer()
                         if !repeatDays.isEmpty {
                             Text(formatRepeatDays(repeatDays))
@@ -42,28 +42,39 @@ struct ReminderView: View {
                         }
                         Image(systemName: "chevron.right")
                     }
-                    .padding()
                 }
                 
                 Spacer()
-                
-                Button(action: {
-                    saveReminderTime()
-                    scheduleNotifications()
-                    showReminder = false
-                }) {
-                    Text("Simpan")
-                        .foregroundStyle(.white)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(width: 361, height: 48)
-                        .background(Color.accent)
-                        .cornerRadius(8)
-                }
-                .padding(.bottom, 16)
+//                Button(action: {
+//                    saveReminderTime()
+//                    scheduleNotifications()
+//                    showReminder = false
+//                }) {
+//                    Text("Simpan")
+//                        .foregroundStyle(.white)
+//                        .font(.subheadline)
+//                        .fontWeight(.semibold)
+//                        .frame(width: 361, height: 48)
+//                        .background(Color.accent)
+//                        .cornerRadius(8)
+//                }
+//                .padding(.bottom, 16)
             }
             .padding()
             .onAppear(perform: handleOnAppear)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {
+                        saveReminderTime()
+                        scheduleNotifications()
+                        showReminder = false
+                        dismiss()
+                    }) {
+                        Text("Simpan")
+                            .foregroundStyle(.accent)
+                    }
+                }
+            }
         }
     }
     
@@ -119,7 +130,7 @@ struct ReminderView: View {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         let content = UNMutableNotificationContent()
-        content.title = "GOPPO Reminder"
+        content.title = "Pengingat dari GOPPO 😋"
         content.body = "Saatnya pesan makan siang!"
         content.sound = .default
         
