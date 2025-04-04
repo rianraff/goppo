@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CollectionView: View {
     let collections: [Collection] = [
@@ -19,6 +20,9 @@ struct CollectionView: View {
         CollectionItem(id: 3, menu_id: 3, quantity: 1, collection_id: 2)
     ]
     
+    @Query var tenants: [Tenant]
+    @Query var menus: [Menu]
+    
     var body: some View {
         ZStack {
             Color("BackgroundColor")
@@ -31,7 +35,9 @@ struct CollectionView: View {
                         ForEach(collections, id: \.id) { collection in
                             CollectionRow(
                                 collection: collection,
-                                collectionItems: collectionItems
+                                collectionItems: collectionItems,
+                                menus: menus,
+                                tenants: tenants
                             )
                         }
                     }
@@ -45,6 +51,6 @@ struct CollectionView: View {
         }
     }
 
-#Preview {
-    CollectionView()
-}
+//#Preview {
+//    CollectionView()
+//}

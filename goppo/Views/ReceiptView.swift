@@ -90,7 +90,7 @@ struct ReceiptView: View {
                                 .padding(6)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.accentColor, lineWidth: 3)
+                                        .stroke(Color.accentColor, lineWidth: 2)
                                 )
                             Spacer()
                         }
@@ -104,13 +104,11 @@ struct ReceiptView: View {
                                                 Image(systemName: "square.and.arrow.up")
                                                 Text("Share Order")
                                             }
-                                            .foregroundStyle(Color.accentColor)
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(.white)
                                             .frame(width: 361, height: 48)
-                                            .background(Color.white)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 8)
-                                                    .stroke(Color.accentColor, lineWidth: 3)
-                                            )
+                                            .background(Color.accent)
+                                            .cornerRadius(10)
                                         }
                                         .sheet(isPresented: $isSharing) {
                                             ActivityViewController(activityItems: [orderSummary])

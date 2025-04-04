@@ -13,11 +13,23 @@ struct CollectionRow: View {
 
     var collection: Collection
     var collectionItems: [CollectionItem] // List of all collection items
+    var menus: [Menu]
+    var tenants: [Tenant]
 
     var filteredItems: [CollectionItem] {
         collectionItems.filter { $0.collection_id == collection.id }
     }
 
+    //tenant yang ditampilin sesuai dengan collection
+    var tenant: Tenant? {
+        guard let firstItem = filteredItems.first,
+              let menu = menus.first(where: { $0.id == firstItem.menu_id }),
+              let tenant = tenants.first(where: { $0.id == menu.tenant_id }) else {
+            return nil
+        }
+        return tenant
+    }
+    
     var body: some View {
         ZStack {
             HStack(spacing: 15.0) {
@@ -47,7 +59,8 @@ struct CollectionRow: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                        Button(action: {}) {
+                        
+                        if let tenant = tenant { NavigationLink(destination: Tenants_Page(tenant: tenant)){
                             Text("Pesan")
                                 .foregroundStyle(.white)
                                 .font(.subheadline)
@@ -55,6 +68,7 @@ struct CollectionRow: View {
                                 .frame(width: 80, height: 26)
                                 .background(Color.accent)
                                 .cornerRadius(8)
+                        }
                         }
                     }
                 }
@@ -87,19 +101,19 @@ struct CollectionRow: View {
 }
 
 
-#Preview {
-    let sampleCollection = Collection(
-        id: 1,
-        name: "Bakso Lovers",
-        total_price: 50_000,
-        imageName: "bakso_image"
-    )
-    
-    let sampleItems = [
-        CollectionItem(id: 1, menu_id: 1, quantity: 1, collection_id: 1),
-        CollectionItem(id: 2, menu_id: 2, quantity: 2, collection_id: 1),
-        CollectionItem(id: 3, menu_id: 3, quantity: 1, collection_id: 2) // Not part of this collection
-    ]
-
-    return CollectionRow(collection: sampleCollection, collectionItems: sampleItems)
-}
+//#Preview {
+//    let sampleCollection = Collection(
+//        id: 1,
+//        name: "Bakso Lovers",
+//        total_price: 50_000,
+//        imageName: "bakso_image"
+//    )
+//    
+//    let sampleItems = [
+//        CollectionItem(id: 1, menu_id: 1, quantity: 1, collection_id: 1),
+//        CollectionItem(id: 2, menu_id: 2, quantity: 2, collection_id: 1),
+//        CollectionItem(id: 3, menu_id: 3, quantity: 1, collection_id: 2) // Not part of this collection
+//    ]
+//
+//    return CollectionRow(collection: sampleCollection, collectionItems: sampleItems)
+//}
