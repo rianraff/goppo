@@ -4,8 +4,8 @@ import SwiftData
 
 struct HomeView: View {
     let collections: [Collection] = [
-        Collection(id: 1, name: "Bakso Lovers", total_price: 50_000, imageName: "bakso_image"),
-        Collection(id: 2, name: "Mie Ayam Fans", total_price: 40_000, imageName: "mie_ayam_image")
+        Collection(id: 1, name: "Bakso Lovers", total_price: 50_000, imageName: "k_mie_ayam_komplit"),
+        Collection(id: 2, name: "Mie Ayam Fans", total_price: 40_000, imageName: "k_mie_ayam_dino")
     ]
     
     let collectionItems: [CollectionItem] = [
@@ -22,62 +22,68 @@ struct HomeView: View {
     ]
     
     @State private var searchText: String = ""
+    @State private var showReminder = false
     
     var filteredTenants: [Tenant] {
-           if searchText.isEmpty {
-               return tenants
-           } else {
-               return tenants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-           }
-       }
+        if searchText.isEmpty {
+            return tenants
+        } else {
+            return tenants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
     
     var body: some View {
         
-            ZStack {
-                Color("BackgroundColor") // Warna background
-                    .ignoresSafeArea()
-                
-                ScrollView{
-                    VStack(alignment: .leading, spacing: 24.0){
-                        
-                        HomeBanner()
-                        
-                        TextField("Cari Tenant..", text: $searchText)
-                            .padding(10)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .animation(.easeInOut(duration: 0.3), value: searchText)
-                        
-                        Text("Pesanan Andalanmu!")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        
-                        ScrollView(.horizontal){
-                            HStack{
-                                ForEach(collections, id: \.id) { collection in
-                                    Collection_Card(
-                                        collection: collection,
-                                        collectionItems: collectionItems
-                                    )
-                                }
-                            }
+        ZStack {
+            Color("BackgroundColor") // Warna background
+                .ignoresSafeArea()
+            
+            ScrollView{
+                VStack(alignment: .leading, spacing: 24.0){
+                    
+                    HomeBanner(showReminder: $showReminder)
+                        .sheet(isPresented: $showReminder) {
+                            ReminderView(showReminder: $showReminder)
+                                .presentationDetents([.height(500)])
+                                .presentationDragIndicator(.visible)
                         }
-                        
-                        Text("Daftar Tenant")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        
-                        //ini jadi grid view
-                        LazyVGrid(columns: columns, spacing: 8) {
-                            ForEach(filteredTenants, id: \.id) { tenant in
-                                NavigationLink(destination: Tenants_Page(tenant: tenant)) {
-                                    Tenant_Card(tenant: tenant)
-                                }
+                    
+                    TextField("Cari Tenant..", text: $searchText)
+                        .padding(10)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        .animation(.easeInOut(duration: 0.3), value: searchText)
+                    
+                    Text("Pesanan Andalanmu!")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    ScrollView(.horizontal){
+                        HStack{
+                            ForEach(collections, id: \.id) { collection in
+                                Collection_Card(
+                                    collection: collection,
+                                    collectionItems: collectionItems
+                                )
                             }
                         }
                     }
-                    .padding()
+                    
+                    Text("Daftar Tenant")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    //ini jadi grid view
+                    LazyVGrid(columns: columns, spacing: 8) {
+                        ForEach(filteredTenants, id: \.id) { tenant in
+                            NavigationLink(destination: Tenants_Page(tenant: tenant)) {
+                                Tenant_Card(tenant: tenant)
+                            }
+                        }
+                    }
                 }
+                .padding()
+            }
             .navigationTitle("Home")
             .navigationBarHidden(true)
             .task {
@@ -88,6 +94,6 @@ struct HomeView: View {
     }
 }
 
-//#Preview {
-//    HomeView()
-//}
+#Preview {
+    HomeView()
+}

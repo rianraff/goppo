@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct TimePicker: View {
-    
-    @State private var selectedTime = Date()
-    
+    @Binding var selectedTime: Date 
+
     var body: some View {
-        
         DatePicker("Select Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
@@ -22,6 +20,6 @@ struct TimePicker: View {
     }
 }
 
-#Preview {
-    TimePicker()
-}
+//#Preview {
+//    TimePicker()
+//}

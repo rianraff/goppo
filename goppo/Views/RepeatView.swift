@@ -8,42 +8,39 @@
 import SwiftUI
 
 struct RepeatView: View {
-    @State private var selectedDays: [(String, Bool)] = [
-        ("Minggu", false),
-        ("Senin", false),
-        ("Selasa", false),
-        ("Rabu", false),
-        ("Kamis", false),
-        ("Jumat", false),
-        ("Sabtu", false)
+    @Binding var repeatDays: [String]
+
+    let weekdays = [
+        ("Sun", "Minggu"), ("Mon", "Senin"), ("Tue", "Selasa"),
+        ("Wed", "Rabu"), ("Thu", "Kamis"), ("Fri", "Jumat"), ("Sat", "Sabtu")
     ]
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            
-            ForEach(0..<selectedDays.count, id: \ .self) { index in
-                HStack {
-                    Text("Setiap \(selectedDays[index].0)")
-                        .font(.subheadline)
-                    Spacer()
-                    Image(systemName: selectedDays[index].1 ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(selectedDays[index].1 ? .accentColor : .gray)
-                        .onTapGesture {
-                            selectedDays[index].1.toggle()
+        List {
+            ForEach(weekdays, id: \.0) { (short, name) in
+                Button {
+                    toggleDay(short)
+                } label: {
+                    HStack {
+                        Text(name)
+                        Spacer()
+                        if repeatDays.contains(short) {
+                            Image(systemName: "checkmark")
+                                .foregroundStyle(.accent)
                         }
+                    }
                 }
             }
-            Spacer()
         }
-        //Navigation Title
-        .navigationTitle("Atur Pengingat")
+        .navigationTitle("Ulangi Setiap")
         .navigationBarTitleDisplayMode(.inline)
-        .padding()
     }
-}
 
-struct RepeatView_Previews: PreviewProvider {
-    static var previews: some View {
-        RepeatView()
+    func toggleDay(_ day: String) {
+        if repeatDays.contains(day) {
+            repeatDays.removeAll { $0 == day }
+        } else {
+            repeatDays.append(day)
+        }
     }
 }
