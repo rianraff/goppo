@@ -44,14 +44,6 @@ struct HomeView: View {
             
             ScrollView{
                 VStack(alignment: .leading, spacing: 24.0){
-                    
-                    //                    HomeBanner(showReminder: $showReminder)
-                    //                        .sheet(isPresented: $showReminder) {
-                    //                            ReminderView(showReminder: $showReminder)
-                    //                                .presentationDetents([.height(500)])
-                    //                                .presentationDragIndicator(.visible)
-                    //                        }
-                    //
                     TextField("Cari Tenant..", text: $searchText)
                         .padding(10)
                         .background(Color.gray.opacity(0.2))

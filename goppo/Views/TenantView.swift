@@ -8,6 +8,11 @@ struct Tenants_Page: View {
     
     var tenant: Tenant
     @Query var menus: [Menu]
+    
+    init(tenant: Tenant, initialOrder: [Int: Int] = [:]) {
+            self.tenant = tenant
+            self._order = State(initialValue: initialOrder)
+        }
 
     // Compute total price
     var totalPrice: Int {
