@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-struct CollectionViewModal: View {
-    @State private var showModal = false
-
-    var body: some View {
-        VStack {
-            Button("Tampilkan Modal") {
-                showModal.toggle()
-            }
-        }
-        .sheet(isPresented: $showModal) {
-            ModalView()
-                .presentationDetents([.height(500)])
-                .presentationDragIndicator(.visible) // Menampilkan indikator drag
-        }
-    }
-}
-
 struct ModalView: View {
     var body: some View {
         VStack(spacing: 16.0) {
@@ -91,5 +74,5 @@ struct ModalView: View {
 
 
 #Preview {
-    CollectionViewModal()
+    ModalView()
 }
