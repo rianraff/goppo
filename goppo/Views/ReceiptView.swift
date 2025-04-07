@@ -10,7 +10,7 @@ import SwiftUI
 struct ReceiptView: View {
     var order: [Int: Int]  // Received from Tenants_Page
     var menus: [Menu]  // Pass menus to match IDs
-
+    
     @State private var isSharing = false
     
     var totalPrice: Int {
@@ -33,92 +33,109 @@ struct ReceiptView: View {
         
         return items.joined(separator: ", ") + "."
     }
-
+    
     
     var body: some View {
-            
-            ScrollView {
-                VStack (spacing: 24) {
-                    VStack (spacing: 18) {
-                        // Order Details
-                        HStack {
-                            Text("Detail Pemesanan")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        
-                        VStack(spacing: 12) {
-                            ForEach(order.keys.sorted(), id: \.self) { menuID in
-                                if let menu = menus.first(where: { $0.id == menuID }) {
-                                    ReceiptRow(menu: menu, quantity: order[menuID, default: 0])
-                                }
+        
+        ScrollView {
+            VStack (spacing: 24) {
+                VStack (spacing: 18) {
+                    // Order Details
+                    HStack {
+                        Text("Detail Pemesanan")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                    }
+                    
+                    VStack(spacing: 12) {
+                        ForEach(order.keys.sorted(), id: \.self) { menuID in
+                            if let menu = menus.first(where: { $0.id == menuID }) {
+                                ReceiptRow(menu: menu, quantity: order[menuID, default: 0])
                             }
                         }
-                        
-                        // Total
-                        HStack {
-                            Text("Total Harga")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.accentColor)
-                            Spacer()
-                            Text("Rp \(totalPrice)")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.accentColor)
-                        }
                     }
                     
-                    Divider()
-                    
-                    VStack (spacing: 18) {
-                        // Payment Info
-                        HStack {
-                            Text("Info Pembayaran")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        
-                        VStack {
-                            // QR Code
-                            Image("qris_dummy")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 240, height: 240)
-                                .padding(6)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.accentColor, lineWidth: 2)
-                                )
-                            Spacer()
-                        }
+                    // Total
+                    HStack {
+                        Text("Total Harga")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.accentColor)
+                        Spacer()
+                        Text("Rp \(totalPrice)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.accentColor)
                     }
-                    
-                    // Share Button
-                    Button(action: {
-                                            isSharing = true
-                                        }) {
-                                            HStack {
-                                                Image(systemName: "square.and.arrow.up")
-                                                Text("Share Order")
-                                            }
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(.white)
-                                            .frame(width: 361, height: 48)
-                                            .background(Color.accent)
-                                            .cornerRadius(10)
-                                        }
-                                        .sheet(isPresented: $isSharing) {
-                                            ActivityViewController(activityItems: [orderSummary])
-                                        }
                 }
-                .padding()
+                
+                Divider()
+                
+                VStack (spacing: 18) {
+                    // Payment Info
+                    HStack {
+                        Text("Info Pembayaran")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                    }
+                    
+                    VStack {
+                        // QR Code
+                        Image("qris_dummy")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 240, height: 240)
+                            .padding(6)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.accentColor, lineWidth: 2)
+                            )
+                        Spacer()
+                    }
+                }
+                
+                // Share Button
+                Button(action: {
+                    isSharing = true
+                }) {
+                    HStack {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("Share Order")
+                    }
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.white)
+                    .frame(width: 361, height: 48)
+                    .background(Color.accent)
+                    .cornerRadius(10)
+                }
+                .sheet(isPresented: $isSharing) {
+                    ActivityViewController(activityItems: [orderSummary])
+                }
             }
+            .padding()
+        }
     }
 }
 
-//#Preview {
-//    ReceiptView()
-//}
+#Preview {
+    ReceiptView(
+        order: [1: 2, 2: 1], // 2 of menu ID 1, 1 of menu ID 2
+        menus: [
+            Menu(id: 1,
+                 name: "Mie Ayam Komplit",
+                 price: 25000,
+                 imageName: "k_mie_ayam_komplit",
+                 category: "food",
+                 tenant_id: 1),
+            Menu(id: 2,
+                 name: "Mie Ayam Polos",
+                 price: 20000,
+                 imageName: "k_mie_ayam_polos",
+                 category: "food",
+                 tenant_id: 1)
+        ]
+    )
+}
+

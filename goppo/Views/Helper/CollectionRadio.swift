@@ -36,7 +36,7 @@ struct CollectionRadio: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 62, height: 62)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            
+    
             Text("Koleksi 1")
                 .font(.body)
                 .fontWeight(.semibold)
@@ -58,6 +58,7 @@ struct CollectionRadio: View {
         .overlay(
             RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
                 )
+        .padding(2)
         
         .onTapGesture {
             isSelected.toggle()

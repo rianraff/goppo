@@ -5,6 +5,7 @@ struct Tenants_Page: View {
     @State private var selectedCategory = 0
     @State private var order: [Int: Int] = [:]
     @Environment(\.modelContext) private var modelContext
+    @State private var showModal = false
     
     var tenant: Tenant
     @Query var menus: [Menu]
@@ -60,7 +61,7 @@ struct Tenants_Page: View {
                     // Action Buttons
                     HStack {
                         Button(action: {
-                            // Bookmark action
+                            showModal.toggle()
                         }) {
                             Image(systemName: "bookmark")
                                 .font(.system(size: 20))
@@ -69,8 +70,13 @@ struct Tenants_Page: View {
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
+                        .sheet(isPresented: $showModal) {
+                            ModalView()
+                                .presentationDetents([.height(500)])
+                                .presentationDragIndicator(.visible)
+                        }
+
                         
-                        // ✅ Navigate to Receipt View and Pass Order Data
                         NavigationLink(destination: ReceiptView(order: order, menus: menus)) {
                             HStack {
                                 Text("Lihat Pesanan")
@@ -107,4 +113,20 @@ struct Tenants_Page: View {
         )
     }
 
+}
+
+#Preview {
+    Tenants_Page(
+        tenant: Tenant(
+            id: 1,
+            name: "Kedai Aneka Rasa",
+            operation_time: "08.00 - 14.00",
+            phone_number: "085777329932",
+            va_number: "123456",
+            va_bank: "BCA",
+            imageName: "kedai_aneka_rasa",
+            qrisImageName: "qris_kedai_aneka_rasa"
+        ),
+        initialOrder: [:] // <- just pass an empty dictionary or some example data like [1: 2, 2: 1]
+    )
 }
