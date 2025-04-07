@@ -73,7 +73,7 @@ struct Tenants_Page: View {
                         // ✅ Navigate to Receipt View and Pass Order Data
                         NavigationLink(destination: ReceiptView(order: order, menus: menus)) {
                             HStack {
-                                Text("See Receipt")
+                                Text("Lihat Pesanan")
                                 Spacer()
                                 Text("Rp \(totalPrice)")
                                     .fontWeight(.semibold)

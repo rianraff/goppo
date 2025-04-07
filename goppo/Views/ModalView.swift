@@ -9,21 +9,20 @@ import SwiftUI
 
 struct ModalView: View {
     var body: some View {
-        VStack(spacing: 16.0) {
+        VStack(spacing: 24.0) {
             Spacer()
-            VStack (alignment: .leading, spacing: 16.0) {
-                Text("Simpan ke Koleksi")
-                    .frame(width: 361, height: 20, alignment: .leading)
-                    .font(.system(size: 22, weight: .bold, design: .default))
-                    .multilineTextAlignment(.leading)
+            
+            VStack (alignment: .leading, spacing: 8.0) {
                 
+                Text("Simpan ke Koleksi")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+
                 Text("Tambahkan menu ke koleksi pesanan andalanmu!")
-                    .frame(width: 361, height: 20, alignment: .leading)
-                    .font(.system(size: 15, weight: .regular, design: .default))
-                    .multilineTextAlignment(.leading)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            .padding(.leading, 16.0)
+            .padding(.horizontal)
             
             ScrollView {
                 VStack {
@@ -34,21 +33,21 @@ struct ModalView: View {
             }
             .frame(height: 270)
             
-            VStack {
+            VStack (spacing: 12) {
                 Button(action: {} ){
                     HStack{
                         Image(systemName: "plus")
                         Text("Tambah Koleksi Baru")
                     }
                     .foregroundStyle(Color.accentColor)
-                    .font(.system(size: 16, weight: .semibold, design: .default))
+                    .font(.body.weight(.semibold))
                     .fontWeight(.semibold)
-                    .frame(width: 361, height: 48)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
                     .background(Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.accentColor, lineWidth: 3)
-                            .cornerRadius(8)
+                        .stroke(Color.accentColor, lineWidth: 2)
                     )
                 }
                 Button(action: {} ){
@@ -56,16 +55,18 @@ struct ModalView: View {
                         Text("Simpan")
                     }
                     .foregroundStyle(Color.white)
-                    .font(.system(size: 16, weight: .semibold, design: .default))
+                    .font(.body.weight(.semibold))
                     .fontWeight(.semibold)
-                    .frame(width: 361, height: 48)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
                     .background(Color.accent)
                     .cornerRadius(8)
-                    
-                    
                 }
             }
+            
         }
+        .padding(.horizontal)
+        .padding(.vertical, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
         
