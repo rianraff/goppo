@@ -18,10 +18,11 @@ struct ModalView: View {
                     Text("Simpan ke Koleksi")
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Text("Tambahkan menu ke koleksi pesanan andalanmu!")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.gray)
                 }
                 .padding(.trailing)
                 

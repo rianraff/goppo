@@ -14,10 +14,8 @@ struct StepperView: View {
 
     var body: some View {
         HStack {
-            ZStack {
-                Color.white
-                Text("\(quantity)") // Show the actual quantity
-            }
+            Text("\(quantity)") // Show the actual quantity
+            .foregroundStyle(.primary)
             .frame(width: 32, height: 32)
             .cornerRadius(8)
             .overlay(
