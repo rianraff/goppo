@@ -46,11 +46,12 @@ struct CollectionRow: View {
                         Text(collection.name)
                             .font(.body)
                             .fontWeight(.semibold)
+                            .foregroundStyle(.black)
                         
                         Text(menuItemsText()) // Dynamically show menu items
                             .font(.footnote)
                             .fontWeight(.regular)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.gray)
                     }
                     
                     HStack {

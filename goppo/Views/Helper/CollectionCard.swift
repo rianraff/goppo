@@ -47,9 +47,10 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
                     Text(collection.name)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     Text(collection.total_price, format: .number.precision(.fractionLength(0)))
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.gray)
                 }
                 
                 if let tenant = tenant {
