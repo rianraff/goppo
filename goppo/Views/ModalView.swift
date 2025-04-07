@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ModalView: View {
     var body: some View {
-        VStack(spacing: 24.0) {
+        VStack(spacing: 12) {
             Spacer()
             
             VStack (alignment: .leading, spacing: 8.0) {
@@ -22,16 +22,16 @@ struct ModalView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            .padding(.horizontal)
+            .padding(.trailing)
             
             ScrollView {
-                VStack {
+                VStack (spacing: 0) {
                     CollectionRadio()
                     CollectionRadio()
                     CollectionRadio()
                 }
             }
-            .frame(height: 270)
+            .frame(height: 250)
             
             VStack (spacing: 12) {
                 Button(action: {} ){
