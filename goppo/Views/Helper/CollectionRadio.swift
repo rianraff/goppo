@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-struct RadioButton: View {
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-        Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
-            .foregroundColor(isSelected ? .accentColor : .gray)
-            .font(.system(size: 16))
-            .imageScale(.large)
-            .accessibilityLabel(isSelected ? "Terpilih" : "Tidak terpilih")
-            
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-
 struct CollectionRadio: View {
     @State private var isSelected: Bool = false // State untuk radio button
     var collection: Collection

@@ -23,15 +23,15 @@ struct InputCollectionNameView: View {
             VStack(alignment: .leading, spacing: 16.0) {
                 
                 Text("Nama Koleksi")
-            Button("Save Collection") {
-                saveCollection()
+                    .frame(width: 361, height: 20, alignment: .leading)
+                    .font(.system(size: 22, weight: .bold))
                     .multilineTextAlignment(.leading)
-            .padding()
-            .background(Color.accentColor)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            
-            Spacer()
+                
+                TextField("Tulis nama koleksi", text: $collectionName)
+                    .padding(12)
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.accentColor, lineWidth: 1)
                     )
                     .frame(width: 361)
