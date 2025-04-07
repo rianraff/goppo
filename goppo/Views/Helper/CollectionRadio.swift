@@ -7,6 +7,24 @@
 
 import SwiftUI
 
+struct RadioButton: View {
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+        Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
+            .foregroundColor(isSelected ? .accentColor : .gray)
+            .font(.system(size: 16))
+            .imageScale(.large)
+            .accessibilityLabel(isSelected ? "Terpilih" : "Tidak terpilih")
+            
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+
 struct CollectionRadio: View {
     @State private var isSelected: Bool = false // State untuk radio button
     var collection: Collection
@@ -34,14 +52,18 @@ struct CollectionRadio: View {
                 }
                 .padding(.top, 4)
             }
-            .padding()
+            .padding(.top, 4)
         }
-        .frame(maxWidth: .infinity, minHeight: 84, alignment: .leading)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 6)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white)
         .cornerRadius(10)
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
-//                )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
+                )
+        .padding(1.5)
+        
         .onTapGesture {
             isSelected.toggle()
         }

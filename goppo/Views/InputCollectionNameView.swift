@@ -12,29 +12,45 @@ struct InputCollectionNameView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query var collections: [Collection]
-    @State private var collectionName = ""
+    
+    @State private var collectionName: String = ""
     
     var order: [Int: Int]
     var menus: [Menu]
     
     var body: some View {
-        VStack {
-            TextField("Collection Name", text: $collectionName)
-                .padding()
-                .textFieldStyle(.roundedBorder)
-            
+        VStack(spacing: 16.0) {
+            VStack(alignment: .leading, spacing: 16.0) {
+                
+                Text("Nama Koleksi")
             Button("Save Collection") {
                 saveCollection()
-            }
+                    .multilineTextAlignment(.leading)
             .padding()
             .background(Color.accentColor)
             .foregroundColor(.white)
             .cornerRadius(8)
             
             Spacer()
+                            .stroke(Color.accentColor, lineWidth: 1)
+                    )
+                    .frame(width: 361)
+            }
+            
+            Spacer()
+            
+            Button(action: {
+                saveCollection()
+            }) {
+                Text("Buat Koleksi")
+                    .foregroundColor(.white)
+                    .font(.system(size: 16, weight: .semibold))
+                    .frame(width: 361, height: 48)
+                    .background(Color.accentColor)
+                    .cornerRadius(8)
+            }
         }
         .padding()
-        .navigationTitle("New Collection")
     }
     
     private func saveCollection() {
@@ -53,10 +69,13 @@ struct InputCollectionNameView: View {
         
         let newCollectionID = Int(Date().timeIntervalSince1970)
         
-        let collection = Collection(id: newCollectionID,
-                                     name: collectionName,
-                                     total_price: total,
-                                     imageName: imageName)
+        let collection = Collection(
+            id: newCollectionID,
+            name: collectionName,
+            total_price: total,
+            imageName: imageName
+        )
+        
         modelContext.insert(collection)
         
         for (menuID, quantity) in order {
@@ -68,10 +87,9 @@ struct InputCollectionNameView: View {
             )
             modelContext.insert(item)
         }
-    
+        
         dismiss()
     }
-
 }
 
 //#Preview {

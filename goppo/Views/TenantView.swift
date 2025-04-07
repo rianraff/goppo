@@ -79,7 +79,7 @@ struct Tenants_Page: View {
                         
                         NavigationLink(destination: ReceiptView(order: order, menus: menus)) {
                             HStack {
-                                Text("See Receipt")
+                                Text("Lihat Pesanan")
                                 Spacer()
                                 Text("Rp \(totalPrice)")
                                     .fontWeight(.semibold)

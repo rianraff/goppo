@@ -42,6 +42,7 @@ struct ReminderView: View {
                         }
                         Image(systemName: "chevron.right")
                     }
+                    .padding()
                 }
                 
                 Spacer()
