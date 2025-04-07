@@ -12,50 +12,29 @@ struct ModalView: View {
     var body: some View {
         
         NavigationStack{
-            VStack(spacing: 16.0) {
+            VStack(spacing: 12.0) {
                 Spacer()
-                VStack (alignment: .leading, spacing: 16.0) {
+                VStack (alignment: .leading, spacing: 8.0) {
                     Text("Simpan ke Koleksi")
-                        .frame(width: 361, height: 20, alignment: .leading)
-                        .font(.system(size: 22, weight: .bold, design: .default))
-                        .multilineTextAlignment(.leading)
+                        .font(.title2)
+                        .fontWeight(.semibold)
                     
                     Text("Tambahkan menu ke koleksi pesanan andalanmu!")
-                        .frame(width: 361, height: 20, alignment: .leading)
-                        .font(.system(size: 15, weight: .regular, design: .default))
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(.accent)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
                 }
-                .padding(.leading, 16.0)
+                .padding(.trailing)
                 
                 ScrollView {
-                    VStack {
+                    VStack(spacing: 0) {
                         CollectionRadio()
                         CollectionRadio()
                         CollectionRadio()
                     }
                 }
-                .frame(height: 270)
+                .frame(height: 265)
                 
-                VStack {
-                    //                Button(action: {
-                    //                    showModal = true
-                    //                }) {
-                    
-                    //                NavigationLink(destination: RepeatView(repeatDays: $repeatDays)) {
-                    //                    HStack {
-                    //                        Text("Ulangi Setiap")
-                    //                            .foregroundStyle(.black)
-                    //                        Spacer()
-                    //                        if !repeatDays.isEmpty {
-                    //                            Text(formatRepeatDays(repeatDays))
-                    //                                .font(.subheadline)
-                    //                                .foregroundStyle(.gray)
-                    //                        }
-                    //                        Image(systemName: "chevron.right")
-                    //                    }
-                    //                }
-                    
+                VStack(spacing: 12.0) {
                     NavigationLink(destination: InputCollectionNameView()){
                         HStack{
                             Image(systemName: "plus")
@@ -72,12 +51,7 @@ struct ModalView: View {
                                 .cornerRadius(8)
                         )
                     }
-                    //                }
-                    //            .sheet(isPresented: $showModal) {
-                    //                InputCollectionNameView()
-                    //                    .presentationDetents([.height(500)])
-                    //                    .presentationDragIndicator(.visible)
-                    //            }
+        
                     Button(action: {} ){
                         HStack{
                             Text("Simpan")
@@ -91,6 +65,8 @@ struct ModalView: View {
                     }
                 }
             }
+            .padding(.horizontal)
+            .padding(.vertical, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.white)
             

@@ -21,14 +21,16 @@ struct InputCollectionNameView: View {
                     .font(.system(size: 22, weight: .bold, design: .default))
                     .multilineTextAlignment(.leading)
                 
-                TextField("Tulis nama", text: $collectionName)
-                    .padding()
+                TextField("Tulis nama koleksi", text: $collectionName)
+                    .padding(12)
                     .background(Color.white)
                     .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.accentColor, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.accentColor, lineWidth: 1)
                     )
                     .frame(width: 361)
+                
+                Spacer()
                 
                 HStack{
                     Text("Buat Koleksi")
@@ -41,9 +43,9 @@ struct InputCollectionNameView: View {
                 .cornerRadius(8)
                 
             }
-            .padding(.leading, 16.0)
 
         }
+        .padding()
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
 //        .background(Color.white)
     }
