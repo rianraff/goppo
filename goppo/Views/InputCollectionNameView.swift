@@ -29,12 +29,12 @@ struct InputCollectionNameView: View {
                 
                 TextField("Tulis nama koleksi", text: $collectionName)
                     .padding(12)
-                    .background(Color.white)
+                    //.background(Color.white)
+                    .frame(width: 361)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.accentColor, lineWidth: 1)
                     )
-                    .frame(width: 361)
             }
             
             Spacer()

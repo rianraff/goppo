@@ -15,8 +15,8 @@ struct TimePicker: View {
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
             .padding()
-            .background(Color.white)
-            .cornerRadius(10)
+//            .background(Color.white)
+//            .cornerRadius(10)
     }
 }
 

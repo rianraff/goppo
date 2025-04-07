@@ -23,6 +23,7 @@ struct CollectionRadio: View {
                 Text(collection.name)
                     .font(.body)
                     .fontWeight(.semibold)
+                    .foregroundStyle(.black)
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)

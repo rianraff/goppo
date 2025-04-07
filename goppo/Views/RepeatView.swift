@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RepeatView: View {
+    
     @Binding var repeatDays: [String]
 
     let weekdays = [
@@ -23,7 +24,7 @@ struct RepeatView: View {
                 } label: {
                     HStack {
                         Text(name)
-                            .foregroundStyle(.black)
+                        
                         Spacer()
                         if repeatDays.contains(short) {
                             Image(systemName: "checkmark")

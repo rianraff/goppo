@@ -24,11 +24,9 @@ struct ModalView: View {
                     Text("Simpan ke Koleksi")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
                     
                     Text("Tambahkan menu ke koleksi pesanan andalanmu!")
                         .font(.subheadline)
-                        .foregroundStyle(.gray)
                 }
                 .padding(.trailing)
                 
@@ -52,7 +50,7 @@ struct ModalView: View {
 
                     }
                 }
-                .frame(height: 270)
+                .frame(height: 250)
                 
                 VStack(spacing: 12.0) {
                     NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
@@ -64,7 +62,7 @@ struct ModalView: View {
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .fontWeight(.semibold)
                         .frame(width: 361, height: 48)
-                        .background(Color.white)
+                        //.background(Color.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.accentColor, lineWidth: 3)
@@ -88,13 +86,13 @@ struct ModalView: View {
             .padding(.horizontal)
             .padding(.vertical, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
+            //.background(Color.white)
             
         }
         .padding(.horizontal)
         .padding(.vertical, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
+        //.background(Color.white)
         
     }
 }
