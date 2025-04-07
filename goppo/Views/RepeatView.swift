@@ -24,7 +24,7 @@ struct RepeatView: View {
                 } label: {
                     HStack {
                         Text(name)
-                        
+                            .foregroundStyle(Color.primary)
                         Spacer()
                         if repeatDays.contains(short) {
                             Image(systemName: "checkmark")

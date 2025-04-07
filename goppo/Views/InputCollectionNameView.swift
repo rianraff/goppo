@@ -27,7 +27,7 @@ struct InputCollectionNameView: View {
                     .font(.system(size: 22, weight: .bold))
                     .multilineTextAlignment(.leading)
                 
-                TextField("Tulis nama koleksi", text: $collectionName)
+                TextField("Berikan Nama Koleksi", text: $collectionName)
                     .padding(12)
                     //.background(Color.white)
                     .frame(width: 361)

@@ -27,6 +27,7 @@ struct ModalView: View {
                     
                     Text("Tambahkan menu ke koleksi pesanan andalanmu!")
                         .font(.subheadline)
+                        .foregroundStyle(Color.secondary)
                 }
                 .padding(.trailing)
                 

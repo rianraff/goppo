@@ -36,7 +36,7 @@ struct HomeView: View {
             
             ScrollView{
                 VStack(alignment: .leading, spacing: 24.0){
-                    TextField("Cari Tenant..", text: $searchText)
+                    TextField("Cari Tenant", text: $searchText)
                         .padding(10)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)

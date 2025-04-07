@@ -20,7 +20,7 @@ var body: some View {
                 Text(menu.name)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
-                Text(menu.price, format: .number.precision(.fractionLength(0)))
+                Text("Rp \(menu.price, format: .number.precision(.fractionLength(0)))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
