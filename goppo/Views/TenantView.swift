@@ -5,6 +5,7 @@ struct Tenants_Page: View {
     @State private var selectedCategory = 0
     @State private var order: [Int: Int] = [:]
     @Environment(\.modelContext) private var modelContext
+    @State private var showModal = false
     
     var tenant: Tenant
     @Query var menus: [Menu]
@@ -60,7 +61,7 @@ struct Tenants_Page: View {
                     // Action Buttons
                     HStack {
                         Button(action: {
-                            // Bookmark action
+                            showModal.toggle()
                         }) {
                             Image(systemName: "bookmark")
                                 .font(.system(size: 20))
@@ -69,6 +70,12 @@ struct Tenants_Page: View {
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
+                        .sheet(isPresented: $showModal) {
+                            ModalView()
+                                .presentationDetents([.height(500)])
+                                .presentationDragIndicator(.visible)
+                        }
+
                         
                         // ✅ Navigate to Receipt View and Pass Order Data
                         NavigationLink(destination: ReceiptView(order: order, menus: menus)) {

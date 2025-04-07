@@ -73,9 +73,9 @@ struct CollectionRadio: View {
         .frame(width: 361, height: 84)
         .background(Color.white)
         .cornerRadius(10)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
-                )
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
+//                )
         .onTapGesture {
             isSelected.toggle()
         }
