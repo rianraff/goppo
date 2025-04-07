@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ModalView: View {
-        
+    @Environment(\.modelContext) private var modelContext
+    @Query var menus: [Menu]
+    @Query var collections: [Collection]
+    @Query var CollctionItems: [CollectionItem]
+    var order: [Int: Int]
+    
     var body: some View {
         
         NavigationStack{
@@ -27,16 +33,29 @@ struct ModalView: View {
                 .padding(.trailing)
                 
                 ScrollView {
-                    VStack(spacing: 0) {
-                        CollectionRadio()
-                        CollectionRadio()
-                        CollectionRadio()
+                    VStack {
+                        ForEach(collections, id: \.id) { collection in
+                            CollectionRadio(collection: collection)
+                                .onAppear {
+                                    print("Collection Name: \(collection.name)")
+                                    
+                                    // Find all items belonging to this collection
+                                    let itemsInCollection = CollctionItems.filter { $0.collection_id == collection.id }
+                                    
+                                    for item in itemsInCollection {
+                                        if let menu = menus.first(where: { $0.id == item.menu_id }) {
+                                            print("Menu in Collection: \(menu.tenant_id)")
+                                        }
+                                    }
+                                }
+                        }
+
                     }
                 }
-                .frame(height: 265)
+                .frame(height: 270)
                 
                 VStack(spacing: 12.0) {
-                    NavigationLink(destination: InputCollectionNameView()){
+                    NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
                         HStack{
                             Image(systemName: "plus")
                             Text("Tambah Koleksi Baru")
@@ -72,10 +91,15 @@ struct ModalView: View {
             .background(Color.white)
             
         }
+        .padding(.horizontal)
+        .padding(.vertical, 24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+        
     }
 }
 
 
-#Preview {
-    ModalView()
-}
+//#Preview {
+//    ModalView()
+//}

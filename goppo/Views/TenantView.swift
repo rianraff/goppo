@@ -71,7 +71,7 @@ struct Tenants_Page: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         .sheet(isPresented: $showModal) {
-                            ModalView()
+                            ModalView(order: order)
                                 .presentationDetents([.height(500)])
                                 .presentationDragIndicator(.visible)
                         }
@@ -79,7 +79,7 @@ struct Tenants_Page: View {
                         
                         NavigationLink(destination: ReceiptView(order: order, menus: menus)) {
                             HStack {
-                                Text("See Receipt")
+                                Text("Lihat Pesanan")
                                 Spacer()
                                 Text("Rp \(totalPrice)")
                                     .fontWeight(.semibold)

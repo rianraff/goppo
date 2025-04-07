@@ -14,7 +14,7 @@ class Collection {
     var name: String
     var total_price: Double
     
-    private var imageName: String
+    var imageName: String
     var image: Image {
         Image(imageName)
     }

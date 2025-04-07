@@ -3,17 +3,9 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-    let collections: [Collection] = [
-        Collection(id: 1, name: "Bakso Lovers", total_price: 50_000, imageName: "k_mie_ayam_komplit"),
-        Collection(id: 2, name: "Mie Ayam Fans", total_price: 40_000, imageName: "k_mie_ayam_dino")
-    ]
     
-    let collectionItems: [CollectionItem] = [
-        CollectionItem(id: 1, menu_id: 1, quantity: 1, collection_id: 1),
-        CollectionItem(id: 2, menu_id: 2, quantity: 2, collection_id: 1),
-        CollectionItem(id: 3, menu_id: 3, quantity: 1, collection_id: 2)
-    ]
-    
+    @Query var collections: [Collection]
+    @Query var collectionItems: [CollectionItem]
     @Query var tenants: [Tenant]
     @Query var menus: [Menu]
     

@@ -27,7 +27,7 @@ struct goppoApp: App {
             NavigationStack{
                 HomeView()
             }
-                .modelContainer(for: [Menu.self, Tenant.self], inMemory: false)
+            .modelContainer(for: [Menu.self, Tenant.self, Collection.self, CollectionItem.self], inMemory: false)
         }
     }
 }
