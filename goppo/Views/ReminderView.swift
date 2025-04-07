@@ -45,20 +45,6 @@ struct ReminderView: View {
                 }
                 
                 Spacer()
-//                Button(action: {
-//                    saveReminderTime()
-//                    scheduleNotifications()
-//                    showReminder = false
-//                }) {
-//                    Text("Simpan")
-//                        .foregroundStyle(.white)
-//                        .font(.subheadline)
-//                        .fontWeight(.semibold)
-//                        .frame(width: 361, height: 48)
-//                        .background(Color.accent)
-//                        .cornerRadius(8)
-//                }
-//                .padding(.bottom, 16)
             }
             .padding()
             .onAppear(perform: handleOnAppear)
@@ -153,6 +139,7 @@ struct ReminderView: View {
 }
 
 
-//#Preview {
-//    ReminderView()
-//}
+#Preview {
+    ReminderView(showReminder: .constant(true))
+}
+

@@ -45,3 +45,7 @@ struct RepeatView: View {
         }
     }
 }
+
+#Preview {
+    RepeatView(repeatDays: .constant(["Mon", "Wed"]))
+}
