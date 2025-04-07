@@ -26,13 +26,13 @@ struct ModalView: View {
                 .padding(.trailing)
                 
                 ScrollView {
-                    VStack(spacing: 0) {
+                    VStack(spacing: 4) {
                         CollectionRadio()
                         CollectionRadio()
                         CollectionRadio()
                     }
                 }
-                .frame(height: 265)
+                .frame(height: 240)
                 
                 VStack(spacing: 12.0) {
                     NavigationLink(destination: InputCollectionNameView()){
