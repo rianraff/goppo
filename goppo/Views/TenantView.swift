@@ -71,7 +71,7 @@ struct Tenants_Page: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         .sheet(isPresented: $showModal) {
-                            ModalView()
+                            ModalView(order: order)
                                 .presentationDetents([.height(500)])
                                 .presentationDragIndicator(.visible)
                         }

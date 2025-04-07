@@ -7,37 +7,20 @@
 
 import SwiftUI
 
-struct RadioButton: View {
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-        Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
-            .foregroundColor(isSelected ? .accentColor : .gray)
-            .font(.system(size: 20))
-            .imageScale(.large)
-            .accessibilityLabel(isSelected ? "Terpilih" : "Tidak terpilih")
-            
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-
 struct CollectionRadio: View {
     @State private var isSelected: Bool = false // State untuk radio button
+    var collection: Collection
     
     var body: some View {
         ZStack{
             HStack(alignment: .center, spacing: 12) {
-                Image("b_bakso_besar")
+                collection.image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 62, height: 62)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                Text("Koleksi 1")
+                Text(collection.name)
                     .font(.body)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
@@ -69,6 +52,6 @@ struct CollectionRadio: View {
 
 
 
-#Preview {
-    CollectionRadio()
-}
+//#Preview {
+//    CollectionRadio()
+//}

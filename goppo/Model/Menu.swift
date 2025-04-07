@@ -9,7 +9,7 @@ class Menu {
     var category: String
     var tenant_id: Int
     
-    private var imageName: String
+    var imageName: String
     var image: Image {
         Image(imageName)
     }
