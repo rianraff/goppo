@@ -47,6 +47,7 @@ struct InputCollectionNameView: View {
                     .background(Color.accentColor)
                     .cornerRadius(8)
             }
+            .disabled(collectionName.isEmpty)
         }
         .padding()
     }

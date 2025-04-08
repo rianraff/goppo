@@ -16,14 +16,13 @@ struct ModalView: View {
     @State private var selectedCollectionID: Int? = nil
     @State private var showAlert = false
     @Environment(\.dismiss) private var dismiss
-
+    
     var order: [Int: Int]
     
     var body: some View {
         
-        NavigationStack{
+        NavigationStack(){
             VStack(spacing: 12.0) {
-                Spacer()
                 VStack (alignment: .leading, spacing: 8.0) {
                     Text("Simpan ke Koleksi")
                         .font(.title2)
@@ -35,12 +34,13 @@ struct ModalView: View {
                 }
                 .padding(.trailing)
                 
-                ScrollView {
-                    VStack (spacing: 2) {
-                        ForEach(collections, id: \.id) { collection in
-                            CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
-                                selectedCollectionID = collection.id
-                            })
+                if !collections.isEmpty {
+                    ScrollView {
+                        VStack (spacing: 2) {
+                            ForEach(collections, id: \.id) { collection in
+                                CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
+                                    selectedCollectionID = collection.id
+                                })
                                 .onAppear {
                                     print("Collection Name: \(collection.name)")
                                     
@@ -54,17 +54,18 @@ struct ModalView: View {
                                     }
                                 }
                                 
+                            }
+                            
                         }
-
                     }
+                    .frame(height: 250)
                 }
-                .frame(height: 250)
                 
                 VStack(spacing: 8.0) {
                     NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
                         HStack{
                             Image(systemName: "plus")
-                            Text("Tambah Koleksi Baru")
+                            Text("Buat Koleksi Baru")
                         }
                         .foregroundStyle(Color.accentColor)
                         .font(.system(size: 16, weight: .semibold, design: .default))
@@ -77,7 +78,7 @@ struct ModalView: View {
                                 .cornerRadius(8)
                         )
                     }
-        
+                    
                     Button(action: {
                         if selectedCollectionID == nil {
                             showAlert = true
@@ -85,7 +86,7 @@ struct ModalView: View {
                             saveToSelectedCollection()
                             dismiss()
                         }
-                        }) {
+                    }) {
                         HStack {
                             Text("Simpan")
                         }
@@ -94,8 +95,10 @@ struct ModalView: View {
                         .frame(width: 361, height: 48)
                         .background(Color.accentColor)
                         .cornerRadius(8)
+                        .disabled(selectedCollectionID == nil)
                     }
                 }
+                Spacer()
             }
             .padding(.horizontal)
             .padding(.vertical, 24)
@@ -110,9 +113,8 @@ struct ModalView: View {
         .alert("Pilih Koleksi", isPresented: $showAlert) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text("Silakan pilih koleksi terlebih dahulu sebelum menyimpan.")
+            Text("Silakan buat atau pilih koleksi terlebih dahulu 😊")
         }
-        
     }
     
     private func saveToSelectedCollection() {
@@ -140,7 +142,7 @@ struct ModalView: View {
         
         print("Overwritten collection ID: \(selectedID) with new order")
     }
-
+    
 }
 
 

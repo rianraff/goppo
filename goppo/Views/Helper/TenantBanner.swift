@@ -9,7 +9,7 @@ struct Tenant_Banner: View {
             tenant.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: 405, maxHeight: 200)
+                .frame(maxWidth: .infinity, maxHeight: 200)
                 .overlay(
                     Color.black.opacity(0.5)
                 )

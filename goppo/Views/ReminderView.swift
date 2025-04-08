@@ -70,7 +70,7 @@ struct ReminderView: View {
             .alert("Pilih hari pengulangan ", isPresented: $showEmptyRepeatAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
-                Text("Kamu belum memilih hari untuk pengingat ulang pesan makan siang.")
+                Text("Kamu belum memilih hari untuk pengingat ulang 🗓️")
             }
         }
     }

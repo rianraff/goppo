@@ -28,6 +28,7 @@ struct Tenants_Page: View {
 
     var body: some View {
         
+        ScrollView (.vertical){
             VStack {
                 // Back Navigation Header
                 Spacer()
@@ -47,16 +48,38 @@ struct Tenants_Page: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    ScrollView {
-                        VStack {
-                            ForEach(menus.filter { menu in
+//                    ScrollView {
+//                        VStack {
+//                            ForEach(menus.filter { menu in
+//                                menu.tenant_id == tenant.id &&
+//                                (selectedCategory == 0 || (selectedCategory == 1 && menu.category == "food") || (selectedCategory == 2 && menu.category == "drink"))
+//                            }, id: \.id) { menu in
+//                                Menu_Row(menu: menu, quantity: binding(for: menu.id))
+//                            }
+//                        }
+//                    }
+                    
+                    ScrollView{
+                        VStack{
+                            let filteredMenus = menus.filter { menu in
                                 menu.tenant_id == tenant.id &&
                                 (selectedCategory == 0 || (selectedCategory == 1 && menu.category == "food") || (selectedCategory == 2 && menu.category == "drink"))
-                            }, id: \.id) { menu in
-                                Menu_Row(menu: menu, quantity: binding(for: menu.id))
+                            }
+                            
+                            if filteredMenus.isEmpty {
+                                Text("Menu belum tersedia")
+                                    .foregroundStyle(.secondary)
+                                    .font(.footnote)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                            } else {
+                                ForEach(filteredMenus, id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
+                                }
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 350)
                     
                     // Action Buttons
                     HStack {
@@ -76,7 +99,7 @@ struct Tenants_Page: View {
                                 .presentationDetents([.height(500)])
                                 .presentationDragIndicator(.visible)
                         }
-
+                        
                         
                         NavigationLink(destination: ReceiptView(order: order)) {
                             HStack {
@@ -100,6 +123,7 @@ struct Tenants_Page: View {
                 }
                 .padding()
             }
+        }
     }
 
     private func binding(for menuID: Int) -> Binding<Int> {

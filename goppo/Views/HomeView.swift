@@ -64,7 +64,7 @@ struct HomeView: View {
                             VStack(alignment: .leading, spacing: 10){
                                 
                                     HStack{
-                                        ForEach(collections, id: \.id) { collection in
+                                        ForEach(collections.prefix(3), id: \.id) { collection in
                                             Collection_Card(
                                                 collection: collection,
                                                 collectionItems: collectionItems,
@@ -92,13 +92,24 @@ struct HomeView: View {
                         .fontWeight(.bold)
                     
                     //ini jadi grid view
-                    LazyVGrid(columns: columns, spacing: 8) {
-                        ForEach(filteredTenants, id: \.id) { tenant in
-                            NavigationLink(destination: Tenants_Page(tenant: tenant)) {
-                                Tenant_Card(tenant: tenant)
+                    
+                    if filteredTenants.isEmpty {
+                        Text("Tenant tidak ditemukan")
+                        .foregroundStyle(.secondary)
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 8) {
+                            ForEach(filteredTenants, id: \.id) { tenant in
+                                NavigationLink(destination: Tenants_Page(tenant: tenant)) {
+                                    Tenant_Card(tenant: tenant)
+                                }
                             }
                         }
                     }
+                    
                 }
                 .padding()
                 //            .navigationTitle("Home")
