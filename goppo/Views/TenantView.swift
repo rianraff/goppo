@@ -28,7 +28,6 @@ struct Tenants_Page: View {
 
     var body: some View {
         
-        ScrollView (.vertical){
             VStack {
                 // Back Navigation Header
                 Spacer()
@@ -78,8 +77,6 @@ struct Tenants_Page: View {
                             }
                         }
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 350)
                     
                     // Action Buttons
                     HStack {
@@ -123,7 +120,6 @@ struct Tenants_Page: View {
                 }
                 .padding()
             }
-        }
     }
 
     private func binding(for menuID: Int) -> Binding<Int> {

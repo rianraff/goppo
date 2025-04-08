@@ -34,7 +34,7 @@ struct HomeView: View {
             Color("BackgroundColor") // Warna background
                 .ignoresSafeArea()
             
-            ScrollView{
+            ScrollView(){
                 VStack(alignment: .leading, spacing: 24.0){
                     TextField("Cari Tenant", text: $searchText)
                         .padding(10)
@@ -63,16 +63,16 @@ struct HomeView: View {
                             
                             VStack(alignment: .leading, spacing: 10){
                                 
-                                    HStack{
-                                        ForEach(collections.prefix(3), id: \.id) { collection in
-                                            Collection_Card(
-                                                collection: collection,
-                                                collectionItems: collectionItems,
-                                                menus: menus,
-                                                tenants: tenants
-                                            )
-                                        }
+                                HStack{
+                                    ForEach(collections.prefix(3), id: \.id) { collection in
+                                        Collection_Card(
+                                            collection: collection,
+                                            collectionItems: collectionItems,
+                                            menus: menus,
+                                            tenants: tenants
+                                        )
                                     }
+                                }
                                 
                                 
                                 HStack{
@@ -95,11 +95,11 @@ struct HomeView: View {
                     
                     if filteredTenants.isEmpty {
                         Text("Tenant tidak ditemukan")
-                        .foregroundStyle(.secondary)
-                        .font(.footnote)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(maxWidth: .infinity)
+                            .foregroundStyle(.secondary)
+                            .font(.footnote)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(maxWidth: .infinity)
                     } else {
                         LazyVGrid(columns: columns, spacing: 8) {
                             ForEach(filteredTenants, id: \.id) { tenant in
