@@ -46,16 +46,31 @@ struct HomeView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    VStack(spacing: 10){
-                        ScrollView(.horizontal){
-                            HStack{
-                                ForEach(collections, id: \.id) { collection in
-                                    Collection_Card(
-                                        collection: collection,
-                                        collectionItems: collectionItems,
-                                        menus: menus,
-                                        tenants: tenants
-                                    )
+                    if collections.isEmpty {
+                        
+                        Text("Belum ada koleksi yang dibuat")
+                            .foregroundStyle(.secondary)
+                            .font(.footnote)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(maxWidth: .infinity, minHeight: 100)
+                            .background(Color(.tertiarySystemBackground))
+                            .cornerRadius(10)
+                        
+                    } else {
+                        
+                        VStack(spacing: 10){
+                            ScrollView(.horizontal){
+                                HStack{
+                                    ForEach(collections, id: \.id) { collection in
+                                        Collection_Card(
+                                            collection: collection,
+                                            collectionItems: collectionItems,
+                                            menus: menus,
+                                            tenants: tenants
+                                        )
+                                        
+                                    }
                                 }
                             }
                         }

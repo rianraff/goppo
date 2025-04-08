@@ -206,5 +206,45 @@
         "imageName": "k_jeruk",
         "category": "food",
         "tenant_id": 3
+    },
+    {
+        "id": 27,
+        "name": "Sapi Lada Hitam",
+        "price": 15000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
+    },
+    {
+        "id": 28,
+        "name": "Mapo Tofu",
+        "price": 10000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
+    },
+    {
+        "id": 29,
+        "name": "Cumi Cabai Hijau",
+        "price": 10000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
+    },
+    {
+        "id": 30,
+        "name": "Telor Masak Semur",
+        "price": 5000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
+    },
+    {
+        "id": 31,
+        "name": "Bakwan Jagung",
+        "price": 2000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
     }
 ]
