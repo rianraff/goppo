@@ -14,6 +14,7 @@ struct ReminderView: View {
     @State private var repeatDays: [String] = []
     @State private var didLoadOnce = false
     @Environment(\.dismiss) private var dismiss
+    @State private var showEmptyRepeatAlert = false
     
     var body: some View {
         NavigationStack {
@@ -52,15 +53,24 @@ struct ReminderView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
-                        saveReminderTime()
-                        scheduleNotifications()
-                        showReminder = false
-                        dismiss()
+                        if repeatDays.isEmpty {
+                            showEmptyRepeatAlert = true
+                        } else {
+                            saveReminderTime()
+                            scheduleNotifications()
+                            showReminder = false
+                            dismiss()
+                        }
                     }) {
                         Text("Simpan")
                             .foregroundStyle(.accent)
                     }
                 }
+            }
+            .alert("Pilih hari pengulangan ", isPresented: $showEmptyRepeatAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Kamu belum memilih hari untuk pengingat ulang pesan makan siang.")
             }
         }
     }

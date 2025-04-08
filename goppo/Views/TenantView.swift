@@ -70,6 +70,7 @@ struct Tenants_Page: View {
                                 .foregroundStyle(.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
+                        .disabled(order.isEmpty)
                         .sheet(isPresented: $showModal) {
                             ModalView(order: order)
                                 .presentationDetents([.height(500)])
@@ -77,7 +78,7 @@ struct Tenants_Page: View {
                         }
 
                         
-                        NavigationLink(destination: ReceiptView(order: order, menus: menus)) {
+                        NavigationLink(destination: ReceiptView(order: order)) {
                             HStack {
                                 Text("Lihat Pesanan")
                                 Spacer()
@@ -90,6 +91,7 @@ struct Tenants_Page: View {
                             .foregroundStyle(.white)
                             .cornerRadius(10)
                         }
+                        .disabled(order.isEmpty)
                     }
                     //Navigation Title
                     .navigationTitle("Tenant")

@@ -17,8 +17,8 @@ struct CollectionView: View {
 
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
-                .ignoresSafeArea()
+            //Color("BackgroundColor")
+            //.ignoresSafeArea()
                 
             VStack {
                 List {
@@ -38,11 +38,11 @@ struct CollectionView: View {
                         }
                     }
                 }
-                .listStyle(.plain)
+                //.listStyle(.plain)
             }
-            .navigationTitle("Pesanan Andalanmu")
+            .navigationTitle("Koleksi")
             .navigationBarTitleDisplayMode(.inline)
-            .padding()
+            //.padding()
         }
     }
     

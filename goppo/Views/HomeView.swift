@@ -42,45 +42,48 @@ struct HomeView: View {
                         .cornerRadius(10)
                         .animation(.easeInOut(duration: 0.3), value: searchText)
                     
-                    Text("Pesanan Andalanmu!")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    
-                    if collections.isEmpty {
+                    if searchText.isEmpty{
+                        Text("Pesanan Andalanmu!")
+                            .font(.title2)
+                            .fontWeight(.bold)
                         
-                        Text("Belum ada koleksi yang dibuat")
-                            .foregroundStyle(.secondary)
-                            .font(.footnote)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .frame(maxWidth: .infinity, minHeight: 100)
-                            .background(Color(.tertiarySystemBackground))
-                            .cornerRadius(10)
-                        
-                    } else {
-                        
-                        VStack(spacing: 10){
-                            ScrollView(.horizontal){
-                                HStack{
-                                    ForEach(collections, id: \.id) { collection in
-                                        Collection_Card(
-                                            collection: collection,
-                                            collectionItems: collectionItems,
-                                            menus: menus,
-                                            tenants: tenants
-                                        )
-                                        
+                        if collections.isEmpty {
+                            
+                            Text("Belum ada koleksi yang dibuat")
+                                .foregroundStyle(.secondary)
+                                .font(.footnote)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(maxWidth: .infinity, minHeight: 100)
+                                .background(Color(.tertiarySystemBackground))
+                                .cornerRadius(10)
+                            
+                        }
+                        else {
+                            
+                            VStack(spacing: 10){
+                                ScrollView(.horizontal){
+                                    HStack{
+                                        ForEach(collections, id: \.id) { collection in
+                                            Collection_Card(
+                                                collection: collection,
+                                                collectionItems: collectionItems,
+                                                menus: menus,
+                                                tenants: tenants
+                                            )
+                                            
+                                        }
                                     }
                                 }
-                            }
-                        }
-                        
-                        HStack{
-                            Spacer()
-                            NavigationLink(destination: CollectionView()){
-                                Text("Lihat Selengkapnya")
-                                    .font(.footnote)
-                                    .foregroundStyle(.gray)
+                                
+                                HStack{
+                                    Spacer()
+                                    NavigationLink(destination: CollectionView()){
+                                        Text("Lihat Selengkapnya")
+                                            .font(.footnote)
+                                            .foregroundStyle(.gray)
+                                    }
+                                }
                             }
                         }
                     }

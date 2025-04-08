@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ReceiptView: View {
     var order: [Int: Int]  // Received from Tenants_Page
-    var menus: [Menu]  // Pass menus to match IDs
+    @Query var menus: [Menu]  // Pass menus to match IDs
     
     @State private var isSharing = false
     
@@ -121,21 +122,8 @@ struct ReceiptView: View {
 
 #Preview {
     ReceiptView(
-        order: [1: 2, 2: 1], // 2 of menu ID 1, 1 of menu ID 2
-        menus: [
-            Menu(id: 1,
-                 name: "Mie Ayam Komplit",
-                 price: 25000,
-                 imageName: "k_mie_ayam_komplit",
-                 category: "food",
-                 tenant_id: 1),
-            Menu(id: 2,
-                 name: "Mie Ayam Polos",
-                 price: 20000,
-                 imageName: "k_mie_ayam_polos",
-                 category: "food",
-                 tenant_id: 1)
-        ]
+        order: [1: 2, 2: 1] // 2 of menu ID 1, 1 of menu ID 2
+        
     )
 }
 

@@ -10,16 +10,16 @@ import SwiftData
 
 struct CollectionRow: View {
     @Environment(\.modelContext) private var modelContext // Inject SwiftData context
-
+    
     var collection: Collection
     var collectionItems: [CollectionItem] // List of all collection items
     var menus: [Menu]
     var tenants: [Tenant]
-
+    
     var filteredItems: [CollectionItem] {
         collectionItems.filter { $0.collection_id == collection.id }
     }
-
+    
     //tenant yang ditampilin sesuai dengan collection
     var tenant: Tenant? {
         guard let firstItem = filteredItems.first,
@@ -30,57 +30,55 @@ struct CollectionRow: View {
         return tenant
     }
     
+    var initialOrder: [Int: Int] {
+        var order: [Int: Int] = [:]
+        for item in filteredItems {
+            order[item.menu_id] = item.quantity
+        }
+        return order
+    }
+    
     var body: some View {
-        ZStack {
-            HStack(spacing: 15.0) {
-                collection.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 97, height: 97)
-                    .clipShape(Rectangle())
-                    .cornerRadius(8)
-                    .clipped()
-                
-                VStack(alignment: .leading, spacing: 10.0) {
-                    VStack(alignment: .leading) {
-                        Text(collection.name)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            //.foregroundStyle(.black)
-                        
-                        Text(menuItemsText()) // Dynamically show menu items
-                            .font(.footnote)
-                            .fontWeight(.regular)
-                            .foregroundStyle(Color.secondary)
-                    }
+        
+        NavigationLink(destination: {
+            ReceiptView(order: initialOrder)
+        }){
+            //ZStack {
+                HStack(spacing: 15.0) {
+                    collection.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 97, height: 97)
+                        .clipShape(Rectangle())
+                        .cornerRadius(8)
+                        .clipped()
                     
-                    HStack {
-                        Text("Rp \(collection.total_price, format: .number)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
+                    VStack(alignment: .leading, spacing: 10.0) {
+                        VStack(alignment: .leading) {
+                            Text(collection.name)
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            //.foregroundStyle(.black)
+                            
+                            Text(menuItemsText()) // Dynamically show menu items
+                                .font(.footnote)
+                                .fontWeight(.regular)
+                                .foregroundStyle(Color.secondary)
+                        }
                         
-                        Spacer()
-                        
-                        if let tenant = tenant { NavigationLink(destination: Tenants_Page(tenant: tenant)){
-                            Text("Pesan")
-                                .foregroundStyle(.white)
+                            Text("Rp \(collection.total_price, format: .number)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
-                                .frame(width: 80, height: 26)
-                                .background(Color.accent)
-                                .cornerRadius(8)
                         }
-                        }
+                    
+                    Spacer()
                     }
                 }
-            }
-            .padding()
+            //}
         }
-        .frame(width: 359, height: 113)
-        .background(Color(.tertiarySystemBackground))
-        .cornerRadius(10)
-    }
-
+    //.background(Color(.tertiarySystemBackground))
+    //.cornerRadius(10)
+    
     private func menuItemsText() -> String {
         do {
             // Fetch all menus from SwiftData
@@ -92,7 +90,7 @@ struct CollectionRow: View {
                 }
                 return nil
             }
-
+            
             return menuNames.isEmpty ? "No items" : menuNames.joined(separator: ", ")
         } catch {
             print("Error fetching menus: \(error.localizedDescription)")
@@ -100,6 +98,7 @@ struct CollectionRow: View {
         }
     }
 }
+
 
 
 //#Preview {

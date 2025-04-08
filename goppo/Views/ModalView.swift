@@ -79,9 +79,13 @@ struct ModalView: View {
                     }
         
                     Button(action: {
-                        saveToSelectedCollection()
-                        dismiss()
-                    }) {
+                        if selectedCollectionID == nil {
+                            showAlert = true
+                        } else {
+                            saveToSelectedCollection()
+                            dismiss()
+                        }
+                        }) {
                         HStack {
                             Text("Simpan")
                         }
@@ -91,7 +95,6 @@ struct ModalView: View {
                         .background(Color.accentColor)
                         .cornerRadius(8)
                     }
-
                 }
             }
             .padding(.horizontal)

@@ -52,17 +52,15 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
                         .font(.footnote)
                         .foregroundStyle(Color.secondary)
                 }
-                
-                if let tenant = tenant {
-                    NavigationLink(destination: Tenants_Page(tenant: tenant, initialOrder: initialOrder)) {
-                        Text("Pesan")
-                            .foregroundStyle(.white)
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .frame(width: 124, height: 32)
-                            .background(Color.accent)
-                            .cornerRadius(12)
-                    }
+
+                NavigationLink(destination: ReceiptView(order: initialOrder)) {
+                    Text("Pesan")
+                        .foregroundStyle(.white)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .frame(width: 124, height: 32)
+                        .background(Color.accent)
+                        .cornerRadius(12)
                 }
             }
             .frame(width: 140, height: 232)
