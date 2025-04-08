@@ -61,8 +61,8 @@ struct HomeView: View {
                         }
                         else {
                             
-                            VStack(spacing: 10){
-                                ScrollView(.horizontal){
+                            VStack(alignment: .leading, spacing: 10){
+                                
                                     HStack{
                                         ForEach(collections, id: \.id) { collection in
                                             Collection_Card(
@@ -71,10 +71,9 @@ struct HomeView: View {
                                                 menus: menus,
                                                 tenants: tenants
                                             )
-                                            
                                         }
                                     }
-                                }
+                                
                                 
                                 HStack{
                                     Spacer()

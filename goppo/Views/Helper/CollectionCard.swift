@@ -32,7 +32,7 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(.tertiarySystemBackground))
             
@@ -40,9 +40,8 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
                 collection.image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 124, height: 124)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .cornerRadius(10)
-                
                 VStack(alignment: .leading, spacing: 4.0){
                     Text(collection.name)
                         .font(.body)
@@ -58,13 +57,15 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
                         .foregroundStyle(.white)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .frame(width: 124, height: 32)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 32)
                         .background(Color.accent)
-                        .cornerRadius(12)
+                        .cornerRadius(8)
                 }
             }
-            .frame(width: 140, height: 232)
+            .padding(8)
         }
+        .frame(width: 115, height: 207)
     }
 }
 
