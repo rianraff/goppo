@@ -18,5 +18,65 @@
       "qrisImageName": "qris_bakwan_bakwan_malang",
       "va_number" : "123456",
       "va_bank" : "BCA"
-    }
+    },
+    {
+          "id": 3,
+          "name": "Kantin Kasturi",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "kantin_kasturi",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
+    {
+          "id": 4,
+          "name": "Mama Djempol",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "mama_djempol",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
+    {
+          "id": 5,
+          "name": "Kedai 2 Nyonya",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "kedai_2_nyonya",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
+    {
+          "id": 6,
+          "name": "Mustafa Minang",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "mustafa_minang",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
+    {
+          "id": 7,
+          "name": "Nasi Kebuli Ayam",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "nasi_kebuli_ayam",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
+    {
+          "id": 8,
+          "name": "Wong Jowo",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "wong_jowo",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        }
 ]

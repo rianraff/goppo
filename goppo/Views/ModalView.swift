@@ -32,7 +32,7 @@ struct ModalView: View {
                 .padding(.trailing)
                 
                 ScrollView {
-                    VStack {
+                    VStack (spacing: 2) {
                         ForEach(collections, id: \.id) { collection in
                             CollectionRadio(collection: collection)
                                 .onAppear {
