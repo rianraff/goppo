@@ -23,14 +23,11 @@ struct InputCollectionNameView: View {
             VStack(alignment: .leading, spacing: 16.0) {
                 
                 Text("Nama Koleksi")
-                    .frame(width: 361, height: 20, alignment: .leading)
                     .font(.system(size: 22, weight: .bold))
-                    .multilineTextAlignment(.leading)
                 
                 TextField("Berikan Nama Koleksi", text: $collectionName)
-                    .padding(12)
-                    //.background(Color.white)
-                    .frame(width: 361)
+                    .frame(maxWidth: .infinity)
+                    .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.accentColor, lineWidth: 1)
@@ -45,7 +42,8 @@ struct InputCollectionNameView: View {
                 Text("Buat Koleksi")
                     .foregroundColor(.white)
                     .font(.system(size: 16, weight: .semibold))
-                    .frame(width: 361, height: 48)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
                     .background(Color.accentColor)
                     .cornerRadius(8)
             }
