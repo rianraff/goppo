@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct CollectionRadio: View {
-    @State private var isSelected: Bool = false // State untuk radio button
     var collection: Collection
-    
+    var isSelected: Bool
+    var onTap: () -> Void
+
     var body: some View {
-        ZStack{
+        ZStack {
             HStack(alignment: .center, spacing: 12) {
                 collection.image
                     .resizable()
@@ -31,7 +32,7 @@ struct CollectionRadio: View {
                 Spacer(minLength: 8)
  
                 RadioButton(isSelected: isSelected) {
-                    isSelected.toggle()
+                    onTap()
                 }
                 .padding(.top, 4)
             }
@@ -43,17 +44,17 @@ struct CollectionRadio: View {
         .background(Color.white)
         .cornerRadius(10)
         .overlay(
-            RoundedRectangle(cornerRadius: 10).stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
-                )
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
+        )
         .padding(1.5)
-        
         .onTapGesture {
-            isSelected.toggle()
+            onTap()
         }
         .animation(.easeInOut, value: isSelected)
-        
     }
 }
+
 
 
 
