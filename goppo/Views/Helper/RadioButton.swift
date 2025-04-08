@@ -15,7 +15,7 @@ struct RadioButton: View {
         Button(action: action) {
         Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
             .foregroundColor(isSelected ? .accentColor : .gray)
-            .font(.system(size: 20))
+            .font(.system(size: 14))
             .imageScale(.large)
             .accessibilityLabel(isSelected ? "Terpilih" : "Tidak terpilih")
             

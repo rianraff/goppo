@@ -34,7 +34,7 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
         
         ZStack{
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
+                .fill(Color(.tertiarySystemBackground))
             
             VStack(alignment: .leading, spacing: 10.0){
                 collection.image
@@ -47,10 +47,10 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
                     Text(collection.name)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
-                    Text(collection.total_price, format: .number.precision(.fractionLength(0)))
+                        //.foregroundStyle(.black)
+                    Text("Rp \(collection.total_price, format: .number.precision(.fractionLength(0)))")
                         .font(.footnote)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color.secondary)
                 }
                 
                 if let tenant = tenant {

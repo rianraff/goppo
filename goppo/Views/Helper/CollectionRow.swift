@@ -46,16 +46,16 @@ struct CollectionRow: View {
                         Text(collection.name)
                             .font(.body)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.black)
+                            //.foregroundStyle(.black)
                         
                         Text(menuItemsText()) // Dynamically show menu items
                             .font(.footnote)
                             .fontWeight(.regular)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Color.secondary)
                     }
                     
                     HStack {
-                        Text(collection.total_price, format: .number)
+                        Text("Rp \(collection.total_price, format: .number)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                         
@@ -77,7 +77,7 @@ struct CollectionRow: View {
             .padding()
         }
         .frame(width: 359, height: 113)
-        .background(Color.white)
+        .background(Color(.tertiarySystemBackground))
         .cornerRadius(10)
     }
 

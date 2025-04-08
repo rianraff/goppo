@@ -24,7 +24,6 @@ struct CollectionRadio: View {
                 Text(collection.name)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .foregroundStyle(.black)
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
@@ -36,13 +35,12 @@ struct CollectionRadio: View {
                 }
                 .padding(.top, 4)
             }
-            .padding(.top, 4)
+         
         }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 6)
+        .padding(6)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white)
-        .cornerRadius(10)
+        //.background(Color.white)
+        .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)

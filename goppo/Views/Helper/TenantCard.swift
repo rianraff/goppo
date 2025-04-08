@@ -8,21 +8,21 @@ struct Tenant_Card: View {
     
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
+                .fill(Color(.tertiarySystemBackground))
                 .frame(width: 176.5, height: 234.5) // Pastikan ukuran tetap
             
             VStack(alignment: .leading, spacing: 10.0) {
                 
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10) // Bentuk mengikuti Rectangle
-                        .fill(Color.clear)
+//                ZStack {
+//                    RoundedRectangle(cornerRadius: 10) // Bentuk mengikuti Rectangle
+//                        .fill(Color.clear)
                     
                     tenant.image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(maxWidth: .infinity, maxHeight: .infinity) // Mengikuti ukuran rectangle
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
+                //}
                 .frame(width: 160.5, height: 160.5) // Ukuran tetap
                 .padding(.horizontal, 8) // Padding kanan-kiri
                 .padding(.top, 8) // Padding atas
@@ -31,16 +31,16 @@ struct Tenant_Card: View {
                     Text(tenant.name)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color.primary)
                         .lineLimit(2)
                     
-                    HStack {
+                    HStack() {
                         Image(systemName: "clock")
-                            .font(.body)
-                            .foregroundStyle(.gray)
+                            .font(.footnote)
+                            .foregroundStyle(Color.secondary)
                         Text(tenant.operation_time)
                             .font(.footnote)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Color.secondary)
                     }
                 }
                 .padding(.horizontal, 8) // Padding kanan-kiri

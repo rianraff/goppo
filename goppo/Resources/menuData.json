@@ -198,5 +198,13 @@
         "imageName": "k_jeruk",
         "category": "drink",
         "tenant_id": 1
+    },
+    {
+        "id": 26,
+        "name": "Ayam Teriyaki",
+        "price": 10000,
+        "imageName": "k_jeruk",
+        "category": "food",
+        "tenant_id": 3
     }
 ]

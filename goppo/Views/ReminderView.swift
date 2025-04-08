@@ -33,6 +33,7 @@ struct ReminderView: View {
                 NavigationLink(destination: RepeatView(repeatDays: $repeatDays)) {
                     HStack {
                         Text("Ulangi Setiap")
+                            .foregroundStyle(Color.primary)
                         Spacer()
                         if !repeatDays.isEmpty {
                             Text(formatRepeatDays(repeatDays))

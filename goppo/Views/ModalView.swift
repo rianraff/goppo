@@ -31,11 +31,12 @@ struct ModalView: View {
                     
                     Text("Tambahkan menu ke koleksi pesanan andalanmu!")
                         .font(.subheadline)
+                        .foregroundStyle(Color.secondary)
                 }
                 .padding(.trailing)
                 
                 ScrollView {
-                    VStack {
+                    VStack (spacing: 2) {
                         ForEach(collections, id: \.id) { collection in
                             CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
                                 selectedCollectionID = collection.id
@@ -59,7 +60,7 @@ struct ModalView: View {
                 }
                 .frame(height: 250)
                 
-                VStack(spacing: 12.0) {
+                VStack(spacing: 8.0) {
                     NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
                         HStack{
                             Image(systemName: "plus")

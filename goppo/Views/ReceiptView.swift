@@ -75,7 +75,7 @@ struct ReceiptView: View {
                 VStack (spacing: 18) {
                     // Payment Info
                     HStack {
-                        Text("Info Pembayaran")
+                        Text("Informasi Pembayaran")
                             .font(.title2)
                             .fontWeight(.semibold)
                         Spacer()
@@ -102,7 +102,7 @@ struct ReceiptView: View {
                 }) {
                     HStack {
                         Image(systemName: "square.and.arrow.up")
-                        Text("Share Order")
+                        Text("Share Pesanan")
                     }
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)

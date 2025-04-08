@@ -10,6 +10,9 @@ struct Tenant_Banner: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(maxWidth: 405, maxHeight: 200)
+                .overlay(
+                    Color.black.opacity(0.5)
+                )
                 .clipped()
             
             VStack(alignment: .leading){
