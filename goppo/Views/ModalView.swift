@@ -13,6 +13,10 @@ struct ModalView: View {
     @Query var menus: [Menu]
     @Query var collections: [Collection]
     @Query var CollctionItems: [CollectionItem]
+    @State private var selectedCollectionID: Int? = nil
+    @State private var showAlert = false
+    @Environment(\.dismiss) private var dismiss
+
     var order: [Int: Int]
     
     var body: some View {
@@ -34,7 +38,9 @@ struct ModalView: View {
                 ScrollView {
                     VStack (spacing: 2) {
                         ForEach(collections, id: \.id) { collection in
-                            CollectionRadio(collection: collection)
+                            CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
+                                selectedCollectionID = collection.id
+                            })
                                 .onAppear {
                                     print("Collection Name: \(collection.name)")
                                     
@@ -47,6 +53,7 @@ struct ModalView: View {
                                         }
                                     }
                                 }
+                                
                         }
 
                     }
@@ -71,17 +78,20 @@ struct ModalView: View {
                         )
                     }
         
-                    Button(action: {} ){
-                        HStack{
+                    Button(action: {
+                        saveToSelectedCollection()
+                        dismiss()
+                    }) {
+                        HStack {
                             Text("Simpan")
                         }
                         .foregroundStyle(Color.white)
-                        .font(.system(size: 16, weight: .semibold, design: .default))
-                        .fontWeight(.semibold)
+                        .font(.system(size: 16, weight: .semibold))
                         .frame(width: 361, height: 48)
-                        .background(Color.accent)
+                        .background(Color.accentColor)
                         .cornerRadius(8)
                     }
+
                 }
             }
             .padding(.horizontal)
@@ -94,8 +104,40 @@ struct ModalView: View {
         .padding(.vertical, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //.background(Color.white)
+        .alert("Pilih Koleksi", isPresented: $showAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Silakan pilih koleksi terlebih dahulu sebelum menyimpan.")
+        }
         
     }
+    
+    private func saveToSelectedCollection() {
+        guard let selectedID = selectedCollectionID else {
+            showAlert = true
+            return
+        }
+        
+        // Step 1: Delete existing items in the selected collection
+        let itemsToDelete = CollctionItems.filter { $0.collection_id == selectedID }
+        for item in itemsToDelete {
+            modelContext.delete(item)
+        }
+        
+        // Step 2: Insert the new items (overwrite)
+        for (menuID, quantity) in order {
+            let newItem = CollectionItem(
+                id: Int(Date().timeIntervalSince1970 * 1000) + menuID,
+                menu_id: menuID,
+                quantity: quantity,
+                collection_id: selectedID
+            )
+            modelContext.insert(newItem)
+        }
+        
+        print("Overwritten collection ID: \(selectedID) with new order")
+    }
+
 }
 
 
