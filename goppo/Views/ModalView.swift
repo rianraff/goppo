@@ -53,7 +53,7 @@ struct ModalView: View {
                 }
                 .frame(height: 250)
                 
-                VStack(spacing: 12.0) {
+                VStack(spacing: 8.0) {
                     NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
                         HStack{
                             Image(systemName: "plus")
