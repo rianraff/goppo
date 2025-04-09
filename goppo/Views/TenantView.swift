@@ -47,17 +47,6 @@ struct Tenants_Page: View {
                     }
                     .pickerStyle(.segmented)
                     
-//                    ScrollView {
-//                        VStack {
-//                            ForEach(menus.filter { menu in
-//                                menu.tenant_id == tenant.id &&
-//                                (selectedCategory == 0 || (selectedCategory == 1 && menu.category == "food") || (selectedCategory == 2 && menu.category == "drink"))
-//                            }, id: \.id) { menu in
-//                                Menu_Row(menu: menu, quantity: binding(for: menu.id))
-//                            }
-//                        }
-//                    }
-                    
                     ScrollView{
                         VStack{
                             let filteredMenus = menus.filter { menu in
@@ -73,7 +62,7 @@ struct Tenants_Page: View {
                                     .padding()
                                     .frame(maxWidth: .infinity)
                             } else {
-                                ForEach(filteredMenus, id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
+                                ForEach(filteredMenus.sorted(by: { $0.price > $1.price}), id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
                                 }
                             }
                         }

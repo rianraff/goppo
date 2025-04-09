@@ -28,6 +28,8 @@ struct HomeView: View {
         }
     }
     
+    
+    
     var body: some View {
         
         ZStack {
@@ -63,17 +65,18 @@ struct HomeView: View {
                             
                             VStack(alignment: .leading, spacing: 10){
                                 
-                                HStack{
-                                    ForEach(collections.prefix(3), id: \.id) { collection in
-                                        Collection_Card(
-                                            collection: collection,
-                                            collectionItems: collectionItems,
-                                            menus: menus,
-                                            tenants: tenants
-                                        )
+                                // get collectionIds from collectionItems
+                                let collectionItemCollectionIDs = collectionItems.map(\.collection_id)
+                                HStack {
+                                    ForEach(
+                                        collections
+                                            .filter { collectionItemCollectionIDs.contains($0.id) }
+                                            .prefix(3),
+                                        id: \.id
+                                    ) { collection in
+                                        Collection_Card(collection: collection, collectionItems: collectionItems, menus: menus, tenants: tenants)
                                     }
                                 }
-                                
                                 
                                 HStack{
                                     Spacer()
@@ -102,7 +105,7 @@ struct HomeView: View {
                             .frame(maxWidth: .infinity)
                     } else {
                         LazyVGrid(columns: columns, spacing: 8) {
-                            ForEach(filteredTenants, id: \.id) { tenant in
+                            ForEach(filteredTenants.sorted(by: {$0.name < $1.name}), id: \.id) { tenant in
                                 NavigationLink(destination: Tenants_Page(tenant: tenant)) {
                                     Tenant_Card(tenant: tenant)
                                 }
@@ -152,6 +155,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}
