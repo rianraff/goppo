@@ -114,6 +114,14 @@ struct ReceiptView: View {
                 .sheet(isPresented: $isSharing) {
                     ActivityViewController(activityItems: [orderSummary])
                 }
+                
+                NavigationLink(destination: HomeView()
+                    .navigationBarBackButtonHidden(true)){
+                    Text("Klik untuk kembali ke halaman utama")
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
+                        .underline(true, color: .gray)
+                }
             }
             .padding()
         }

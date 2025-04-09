@@ -71,6 +71,7 @@ struct Tenants_Page: View {
                                     .font(.footnote)
                                     .multilineTextAlignment(.center)
                                     .padding()
+                                    .frame(maxWidth: .infinity)
                             } else {
                                 ForEach(filteredMenus, id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
                                 }
