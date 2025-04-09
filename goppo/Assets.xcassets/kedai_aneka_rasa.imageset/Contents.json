@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "kedai_aneka_rasa.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "kedai_aneka_rasa.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "wong_jowo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "wong_jowo.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
