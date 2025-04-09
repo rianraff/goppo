@@ -27,7 +27,9 @@ struct HomeView: View {
             return tenants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
     }
-        
+    
+    
+    
     var body: some View {
         
         ZStack {
@@ -63,14 +65,14 @@ struct HomeView: View {
                             
                             VStack(alignment: .leading, spacing: 10){
                                 
-                                HStack{
-                                    ForEach(collections.prefix(3), id: \.id) { collection in
-                                        Collection_Card(
-                                            collection: collection,
-                                            collectionItems: collectionItems,
-                                            menus: menus,
-                                            tenants: tenants
-                                        )
+                                // get collectionIds from collectionItems
+                                let collectionItemCollectionIDs = collectionItems.map(\.collection_id)
+                                HStack {
+                                    ForEach(collections, id: \.id) { collection in
+                                        // if the collection is not present in the array of collection item's collection IDs then it means this collection doesnt have any associated items and hence we include it
+                                        if collectionItemCollectionIDs.contains(collection.id) {
+                                            Collection_Card(collection: collection, collectionItems: collectionItems, menus: menus, tenants: tenants)
+                                        }
                                     }
                                 }
                                 
@@ -147,6 +149,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}

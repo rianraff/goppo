@@ -55,38 +55,10 @@ struct InputCollectionNameView: View {
     private func saveCollection() {
         guard !collectionName.isEmpty else { return }
         
-        let firstMenuID = order.keys.first
-        let imageName = menus.first(where: { $0.id == firstMenuID })?.imageName ?? "default_image"
-        
-        let total = order.reduce(0) { total, entry in
-            let (menuID, quantity) = entry
-            if let menu = menus.first(where: { $0.id == menuID }) {
-                return total + (menu.price * Double(quantity))
-            }
-            return total
-        }
-        
         let newCollectionID = Int(Date().timeIntervalSince1970)
-        
-        let collection = Collection(
-            id: newCollectionID,
-            name: collectionName,
-            total_price: total,
-            imageName: imageName
-        )
+        let collection = Collection(id: newCollectionID, name: collectionName, total_price: 0, imageName: "default_image")
         
         modelContext.insert(collection)
-        
-        for (menuID, quantity) in order {
-            let item = CollectionItem(
-                id: Int(Date().timeIntervalSince1970 * 1000) + menuID,
-                menu_id: menuID,
-                quantity: quantity,
-                collection_id: newCollectionID
-            )
-            modelContext.insert(item)
-        }
-        
         dismiss()
     }
 }

@@ -123,14 +123,18 @@ struct ModalView: View {
             return
         }
         
-        // Step 1: Delete existing items in the selected collection
+        // Delete existing items in the selected collection
         let itemsToDelete = CollctionItems.filter { $0.collection_id == selectedID }
         for item in itemsToDelete {
             modelContext.delete(item)
         }
         
-        // Step 2: Insert the new items (overwrite)
+        var totalPrice = 0.0  // Variable to hold total price of current collection
+        var imageName = ""   // Variable to hold the imageName of first menu item in the order
+
         for (menuID, quantity) in order {
+            guard let menu = menus.first(where: { $0.id == menuID }) else { continue }
+            
             let newItem = CollectionItem(
                 id: Int(Date().timeIntervalSince1970 * 1000) + menuID,
                 menu_id: menuID,
@@ -138,9 +142,30 @@ struct ModalView: View {
                 collection_id: selectedID
             )
             modelContext.insert(newItem)
+            
+            // Calculate total price for each menu item and add it to the totalPrice variable
+            totalPrice += (menu.price) * Double(quantity)
+            
+            // Set imageName of first menu in order (Assume that there's only one menu per collection)
+            if imageName == "" {
+                imageName = menu.imageName
+            }
         }
         
         print("Overwritten collection ID: \(selectedID) with new order")
+        
+        // Now you have total_price, use it as required
+        
+        // Update the total_price of selected Collection in your data model and imageName
+        do {
+            if let collection = collections.first(where: { $0.id == selectedID }) {
+                collection.total_price = totalPrice
+                collection.imageName = imageName    // Set new imageName for collection
+                try modelContext.save()
+            }
+        } catch {
+            print("Error saving the context: \(error)")
+        }
     }
     
 }
