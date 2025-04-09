@@ -62,7 +62,7 @@ struct Tenants_Page: View {
                                     .padding()
                                     .frame(maxWidth: .infinity)
                             } else {
-                                ForEach(filteredMenus, id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
+                                ForEach(filteredMenus.sorted(by: { $0.price > $1.price}), id: \.id){ menu in Menu_Row(menu: menu, quantity: binding(for: menu.id))
                                 }
                             }
                         }

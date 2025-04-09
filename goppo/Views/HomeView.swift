@@ -105,7 +105,7 @@ struct HomeView: View {
                             .frame(maxWidth: .infinity)
                     } else {
                         LazyVGrid(columns: columns, spacing: 8) {
-                            ForEach(filteredTenants, id: \.id) { tenant in
+                            ForEach(filteredTenants.sorted(by: {$0.name < $1.name}), id: \.id) { tenant in
                                 NavigationLink(destination: Tenants_Page(tenant: tenant)) {
                                     Tenant_Card(tenant: tenant)
                                 }
