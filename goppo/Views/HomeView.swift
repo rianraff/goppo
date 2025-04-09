@@ -115,11 +115,16 @@ struct HomeView: View {
                 //            .navigationTitle("Home")
                 //            .navigationBarHidden(true)
                 .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Text("GOPPO")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.accent)
+                        ToolbarItem(placement: .navigationBarLeading){
+                            
+                            HStack{
+                                Image("Logo Header")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxHeight: .infinity)
+                                
+                                Spacer()
+                            }
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing){
