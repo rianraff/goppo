@@ -88,7 +88,7 @@ struct ModalView: View {
                         }
                     }) {
                         HStack {
-                            Text("Simpan")
+                            Text("Simpan ke Koleksi")
                         }
                         .foregroundStyle(Color.white)
                         .font(.system(size: 16, weight: .semibold))

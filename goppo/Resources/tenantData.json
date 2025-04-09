@@ -1,24 +1,24 @@
 [
     {
-      "id": 1,
-      "name": "Kedai Aneka Rasa",
-      "operation_time": "08.00 - 14.00",
-      "imageName": "kedai_aneka_rasa",
-      "phone_number": "085777329932",
-      "qrisImageName": "qris_kedai_aneka_rasa",
-      "va_number" : "123456",
-      "va_bank" : "BCA"
-    },
+          "id": 1,
+          "name": "Mustafa Minang",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "mustafa_minang",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
     {
-      "id": 2,
-      "name": "Bakso Bakwan Malang",
-      "operation_time": "08.00 - 14.00",
-      "imageName": "bakso_bakwan_malang",
-      "phone_number": "085777329932",
-      "qrisImageName": "qris_bakwan_bakwan_malang",
-      "va_number" : "123456",
-      "va_bank" : "BCA"
-    },
+          "id": 2,
+          "name": "Wong Jowo",
+          "operation_time": "08.00 - 14.00",
+          "imageName": "wong_jowo",
+          "phone_number": "085777329932",
+          "qrisImageName": "qris_bakwan_bakwan_malang",
+          "va_number" : "123456",
+          "va_bank" : "BCA"
+        },
     {
           "id": 3,
           "name": "Kantin Kasturi",
@@ -40,43 +40,23 @@
           "va_bank" : "BCA"
         },
     {
-          "id": 5,
-          "name": "Kedai 2 Nyonya",
-          "operation_time": "08.00 - 14.00",
-          "imageName": "kedai_2_nyonya",
-          "phone_number": "085777329932",
-          "qrisImageName": "qris_bakwan_bakwan_malang",
-          "va_number" : "123456",
-          "va_bank" : "BCA"
-        },
+      "id": 5,
+      "name": "Kedai Aneka Rasa",
+      "operation_time": "08.00 - 14.00",
+      "imageName": "kedai_aneka_rasa",
+      "phone_number": "085777329932",
+      "qrisImageName": "qris_kedai_aneka_rasa",
+      "va_number" : "123456",
+      "va_bank" : "BCA"
+    },
     {
-          "id": 6,
-          "name": "Mustafa Minang",
-          "operation_time": "08.00 - 14.00",
-          "imageName": "mustafa_minang",
-          "phone_number": "085777329932",
-          "qrisImageName": "qris_bakwan_bakwan_malang",
-          "va_number" : "123456",
-          "va_bank" : "BCA"
-        },
-    {
-          "id": 7,
-          "name": "Nasi Kebuli Ayam",
-          "operation_time": "08.00 - 14.00",
-          "imageName": "nasi_kebuli_ayam",
-          "phone_number": "085777329932",
-          "qrisImageName": "qris_bakwan_bakwan_malang",
-          "va_number" : "123456",
-          "va_bank" : "BCA"
-        },
-    {
-          "id": 8,
-          "name": "Wong Jowo",
-          "operation_time": "08.00 - 14.00",
-          "imageName": "wong_jowo",
-          "phone_number": "085777329932",
-          "qrisImageName": "qris_bakwan_bakwan_malang",
-          "va_number" : "123456",
-          "va_bank" : "BCA"
-        }
+      "id": 6,
+      "name": "Bakso Bakwan Malang",
+      "operation_time": "08.00 - 14.00",
+      "imageName": "bakso_bakwan_malang",
+      "phone_number": "085777329932",
+      "qrisImageName": "qris_bakwan_bakwan_malang",
+      "va_number" : "123456",
+      "va_bank" : "BCA"
+    }
 ]

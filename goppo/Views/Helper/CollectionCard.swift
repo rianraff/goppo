@@ -39,7 +39,7 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
             VStack(alignment: .leading, spacing: 10.0){
                 collection.image
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .cornerRadius(10)
                 VStack(alignment: .leading, spacing: 4.0){

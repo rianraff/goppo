@@ -114,6 +114,13 @@ struct ReceiptView: View {
                 .sheet(isPresented: $isSharing) {
                     ActivityViewController(activityItems: [orderSummary])
                 }
+                
+                Button(action: {)
+                    Text("Klik untuk kembali ke halaman utama")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .underline(true, color: .secondary)
+                
             }
             .padding()
         }
