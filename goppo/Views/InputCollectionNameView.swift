@@ -14,6 +14,7 @@ struct InputCollectionNameView: View {
     @Query var collections: [Collection]
     
     @State private var collectionName: String = ""
+    @Binding var newCollectionId: Int?
     
     var order: [Int: Int]
     var menus: [Menu]
@@ -58,6 +59,7 @@ struct InputCollectionNameView: View {
         let newCollectionID = Int(Date().timeIntervalSince1970)
         let collection = Collection(id: newCollectionID, name: collectionName, total_price: 0, imageName: "default_image")
         
+        newCollectionId = newCollectionID
         modelContext.insert(collection)
         dismiss()
     }

@@ -68,14 +68,15 @@ struct HomeView: View {
                                 // get collectionIds from collectionItems
                                 let collectionItemCollectionIDs = collectionItems.map(\.collection_id)
                                 HStack {
-                                    ForEach(collections, id: \.id) { collection in
-                                        // if the collection is not present in the array of collection item's collection IDs then it means this collection doesnt have any associated items and hence we include it
-                                        if collectionItemCollectionIDs.contains(collection.id) {
-                                            Collection_Card(collection: collection, collectionItems: collectionItems, menus: menus, tenants: tenants)
-                                        }
+                                    ForEach(
+                                        collections
+                                            .filter { collectionItemCollectionIDs.contains($0.id) }
+                                            .prefix(3),
+                                        id: \.id
+                                    ) { collection in
+                                        Collection_Card(collection: collection, collectionItems: collectionItems, menus: menus, tenants: tenants)
                                     }
                                 }
-                                
                                 
                                 HStack{
                                     Spacer()

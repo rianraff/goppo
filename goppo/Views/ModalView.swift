@@ -15,9 +15,34 @@ struct ModalView: View {
     @Query var CollctionItems: [CollectionItem]
     @State private var selectedCollectionID: Int? = nil
     @State private var showAlert = false
+    @State private var newCollectionId: Int? = nil
+    
     @Environment(\.dismiss) private var dismiss
     
     var order: [Int: Int]
+    
+    private var collectionsListView: some View {
+        ScrollView {
+            VStack(spacing: 2) {
+                ForEach(collections, id: \.id) { collection in
+                    CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
+                        selectedCollectionID = collection.id
+                    })
+                    .onAppear {
+                        print("Collection Name: \(collection.name)")
+                        let itemsInCollection = CollctionItems.filter { $0.collection_id == collection.id }
+                        for item in itemsInCollection {
+                            if let menu = menus.first(where: { $0.id == item.menu_id }) {
+                                print("Menu in Collection: \(menu.tenant_id)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .frame(height: 250)
+    }
+
     
     var body: some View {
         
@@ -35,34 +60,13 @@ struct ModalView: View {
                 .padding(.trailing)
                 
                 if !collections.isEmpty {
-                    ScrollView {
-                        VStack (spacing: 2) {
-                            ForEach(collections, id: \.id) { collection in
-                                CollectionRadio(collection: collection, isSelected: selectedCollectionID == collection.id, onTap: {
-                                    selectedCollectionID = collection.id
-                                })
-                                .onAppear {
-                                    print("Collection Name: \(collection.name)")
-                                    
-                                    // Find all items belonging to this collection
-                                    let itemsInCollection = CollctionItems.filter { $0.collection_id == collection.id }
-                                    
-                                    for item in itemsInCollection {
-                                        if let menu = menus.first(where: { $0.id == item.menu_id }) {
-                                            print("Menu in Collection: \(menu.tenant_id)")
-                                        }
-                                    }
-                                }
-                                
-                            }
-                            
-                        }
-                    }
-                    .frame(height: 250)
+                    collectionsListView
                 }
                 
                 VStack(spacing: 8.0) {
-                    NavigationLink(destination: InputCollectionNameView(order: order, menus: menus)){
+                    NavigationLink(destination: {
+                        InputCollectionNameView(newCollectionId: $newCollectionId, order: order, menus: menus)
+                    }) {
                         HStack{
                             Image(systemName: "plus")
                             Text("Buat Koleksi Baru")
@@ -99,6 +103,12 @@ struct ModalView: View {
                     }
                 }
                 Spacer()
+            }
+            .onChange(of: newCollectionId) { newValue in
+                if let newValue {
+                    selectedCollectionID = newValue
+                    print("Auto selected new collection: \(newValue)")
+                }
             }
             .padding(.horizontal)
             .padding(.vertical, 24)
