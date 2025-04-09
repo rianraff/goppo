@@ -28,14 +28,18 @@ struct CollectionRadio: View {
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Spacer(minLength: 8)
- 
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        onTap()
+                    }
+
                 RadioButton(isSelected: isSelected) {
                     onTap()
                 }
                 .padding(.top, 4)
             }
-         
         }
         .padding(6)
         .frame(maxWidth: .infinity, alignment: .leading)
