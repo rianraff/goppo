@@ -23,10 +23,9 @@ struct SplashScreenView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 150)
-                    Image("Logo Text")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame (height: 50)
+                    Text("GOPPO")
+                        .font(Font.custom("FredokaOne-Regular", size: 45))
+                        .foregroundStyle(.white)
                 }
                 
             }

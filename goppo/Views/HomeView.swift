@@ -121,14 +121,18 @@ struct HomeView: View {
                     .toolbar{
                         ToolbarItem(placement: .navigationBarLeading){
                             
-                            HStack{
-                                Image("Logo Header")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(maxHeight: .infinity)
-                                
-                                Spacer()
-                            }
+//                            HStack{
+//                                Image("Logo Header")
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fit)
+//                                    .frame(maxHeight: .infinity)
+//                                
+//                                Spacer()
+//                            }
+                            
+                            Text("GOPPO")
+                                .font(Font.custom("FredokaOne-Regular", size: 32))
+                                .foregroundStyle(Color.accent)
                         }
                         
                         ToolbarItem(placement: .navigationBarTrailing){
