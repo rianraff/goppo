@@ -203,39 +203,39 @@
         "id": 26,
         "name": "Ayam Teriyaki",
         "price": 10000,
-        "imageName": "k_jeruk",
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
     },
     {
         "id": 27,
         "name": "Sapi Lada Hitam",
-        "price": 15000,
-        "imageName": "k_jeruk",
+        "price": 10000,
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
     },
     {
         "id": 28,
         "name": "Mapo Tofu",
-        "price": 10000,
-        "imageName": "k_jeruk",
+        "price": 5000,
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
     },
     {
         "id": 29,
         "name": "Cumi Cabai Hijau",
-        "price": 10000,
-        "imageName": "k_jeruk",
+        "price": 7000,
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
     },
     {
         "id": 30,
         "name": "Telor Masak Semur",
-        "price": 5000,
-        "imageName": "k_jeruk",
+        "price": 4000,
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
     },
@@ -243,8 +243,112 @@
         "id": 31,
         "name": "Bakwan Jagung",
         "price": 2000,
-        "imageName": "k_jeruk",
+        "imageName": "dummy_food",
         "category": "food",
         "tenant_id": 3
+    },
+    {
+        "id": 32,
+        "name": "Bubur Ayam",
+        "price": 15000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 2
+    },
+    {
+        "id": 33,
+        "name": "Siomay",
+        "price": 20000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 2
+    },
+    {
+        "id": 34,
+        "name": "Air Aqua",
+        "price": 5000,
+        "imageName": "dummy_drink",
+        "category": "drink",
+        "tenant_id": 2
+    },
+    {
+        "id": 35,
+        "name": "Nasi Padang",
+        "price": 20000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 1
+    },
+    {
+        "id": 36,
+        "name": "Nasi Padang Komplit",
+        "price": 25000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 1
+    },
+    {
+        "id": 37,
+        "name": "Teh Tawar",
+        "price": 2000,
+        "imageName": "dummy_drink",
+        "category": "drink",
+        "tenant_id": 1
+    },
+    {
+        "id": 38,
+        "name": "Teh Manis",
+        "price": 4000,
+        "imageName": "dummy_drink",
+        "category": "drink",
+        "tenant_id": 1
+    },
+    {
+        "id": 39,
+        "name": "Ayam Teriyaki",
+        "price": 10000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
+    },
+    {
+        "id": 40,
+        "name": "Sapi Lada Hitam",
+        "price": 10000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
+    },
+    {
+        "id": 41,
+        "name": "Mapo Tofu",
+        "price": 5000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
+    },
+    {
+        "id": 42,
+        "name": "Cumi Cabai Hijau",
+        "price": 7000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
+    },
+    {
+        "id": 43,
+        "name": "Telor Masak Semur",
+        "price": 4000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
+    },
+    {
+        "id": 44,
+        "name": "Bakwan Jagung",
+        "price": 2000,
+        "imageName": "dummy_food",
+        "category": "food",
+        "tenant_id": 4
     }
 ]
