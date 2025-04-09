@@ -8,22 +8,35 @@
 import SwiftUI
 
 struct SplashScreenView: View {
+    @State private var isActive = false
+    
     var body: some View {
-        ZStack {
-            
-            Color.accent
-                .ignoresSafeArea()
-            VStack (spacing: 8){
-                Image("Logo Trans 1")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 180, height: 180)
-                Image("Logo Text")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame (height: 56)
-            }
+        if isActive {
+            HomeView()
+        } else {
+            ZStack {
                 
+                Color.accent
+                    .ignoresSafeArea()
+                VStack (spacing: 8){
+                    Image("Logo Trans 1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                    Image("Logo Text")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame (height: 50)
+                }
+                
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    withAnimation{
+                        isActive = true
+                    }
+                }
+            }
         }
         
     }

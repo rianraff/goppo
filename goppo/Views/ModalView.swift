@@ -14,7 +14,15 @@ struct ModalView: View {
     @Query var collections: [Collection]
     @Query var CollctionItems: [CollectionItem]
     @State private var selectedCollectionID: Int? = nil
+    
+    @State private var alertType: AlertType?
     @State private var showAlert = false
+    
+    enum AlertType {
+        case belumPilihKoleksi
+        case konfirmasiGantiIsi
+    }
+    
     @State private var newCollectionId: Int? = nil
     
     @Environment(\.dismiss) private var dismiss
@@ -85,10 +93,14 @@ struct ModalView: View {
                     
                     Button(action: {
                         if selectedCollectionID == nil {
+                            alertType = .belumPilihKoleksi
                             showAlert = true
-                        } else {
+                        } else if let selectedID = selectedCollectionID, CollctionItems.filter({$0.collection_id == selectedID}).isEmpty {
                             saveToSelectedCollection()
                             dismiss()
+                        } else {
+                            alertType = .konfirmasiGantiIsi
+                            showAlert = true
                         }
                     }) {
                         HStack {
@@ -120,11 +132,38 @@ struct ModalView: View {
         .padding(.vertical, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //.background(Color.white)
-        .alert("Pilih Koleksi", isPresented: $showAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("Silakan buat atau pilih koleksi terlebih dahulu 😊")
+        //        .alert("Pilih Koleksi", isPresented: $showAlert) {
+        //            Button("OK", role: .cancel) { }
+        //        } message: {
+        //            Text("Silakan buat atau pilih koleksi terlebih dahulu 😊")
+        //        }
+        .alert(isPresented: $showAlert) {
+            if let alertType = alertType {
+                switch alertType {
+                case .belumPilihKoleksi:
+                    return Alert(
+                        title: Text("Pilih Koleksi"),
+                        message: Text("Silakan buat atau pilih koleksi terlebih dahulu 😊"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                case .konfirmasiGantiIsi:
+                    return Alert(
+                        title: Text("Koleksimu Akan Diperbarui"),
+                        message: Text("Isi koleksi yang lama akan diganti dengan yang baru. Lanjutkan? 🔄"),
+                        primaryButton: .default(Text("Perbarui Koleksi")) {
+                            saveToSelectedCollection()
+                            dismiss()
+                        },
+                        secondaryButton: .cancel(Text("Batal"))
+                    )
+                }
+            } else {
+                // fallback kalau alertType ternyata nil, misalnya log error (opsional)
+                return Alert(title: Text("Error"))
+            }
         }
+
+
     }
     
     private func saveToSelectedCollection() {

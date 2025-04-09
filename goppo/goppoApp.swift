@@ -24,9 +24,8 @@ struct goppoApp: App {
 //                                        qrisImageName : "BCA"
 //                                       )
             
-            NavigationStack(){
-                HomeView()
-            }
+                SplashScreenView()
+            
             .modelContainer(for: [Menu.self, Tenant.self, Collection.self, CollectionItem.self], inMemory: false)
         }
     }
