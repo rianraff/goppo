@@ -115,12 +115,13 @@ struct ReceiptView: View {
                     ActivityViewController(activityItems: [orderSummary])
                 }
                 
-                Button(action: {)
+                NavigationLink(destination: HomeView()
+                    .navigationBarBackButtonHidden(true)){
                     Text("Klik untuk kembali ke halaman utama")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .underline(true, color: .secondary)
-                
+                        .foregroundStyle(.gray)
+                        .underline(true, color: .gray)
+                }
             }
             .padding()
         }
