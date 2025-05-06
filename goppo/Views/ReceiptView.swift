@@ -60,12 +60,12 @@ struct ReceiptView: View {
                     // Total
                     HStack {
                         Text("Total Harga")
-                            .font(.title2)
+                            .font(.system(size: 20))
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                         Spacer()
                         Text("Rp \(totalPrice)")
-                            .font(.title2)
+                            .font(.system(size: 20))
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                     }
