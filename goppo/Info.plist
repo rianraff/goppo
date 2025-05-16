@@ -4,6 +4,16 @@
 <dict>
 	<key>CFBundleURLTypes</key>
 	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.goppo.goppoapp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>goppo</string>
+			</array>
+		</dict>
 		<dict/>
 	</array>
 	<key>UIAppFonts</key>

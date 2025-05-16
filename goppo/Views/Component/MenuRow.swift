@@ -3,35 +3,40 @@ import SwiftUI
 
 struct Menu_Row: View {
     var menu: Menu
-    @Binding var quantity: Int
+    @Binding var order: Order
 
-var body: some View {
-        HStack{
-            
+    var body: some View {
+        HStack {
             menu.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 64, height: 64)
                 .clipShape(Rectangle())
                 .cornerRadius(8)
-                .clipped()
-            
-            VStack(alignment: .leading){
+
+            VStack(alignment: .leading) {
                 Text(menu.name)
                     .font(.subheadline)
-                    .multilineTextAlignment(.leading)
                 Text("Rp \(menu.price, format: .number.precision(.fractionLength(0)))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            
-            StepperView(quantity: $quantity)
+
+            StepperView(quantity: Binding(
+                get: {
+                    order.quantity(for: menu)
+                },
+                set: { newValue in
+                    order.setQuantity(for: menu, quantity: newValue)
+                }
+            ))
         }
     }
 }
 
-#Preview {
+
+//#Preview {
 //    @Binding var quantity: Int
 //    
 //    Menu_Row(menu:
@@ -43,4 +48,4 @@ var body: some View {
 //                        tenant_id: 1),
 //             quantity: $quantity
 //    )
-}
+//}

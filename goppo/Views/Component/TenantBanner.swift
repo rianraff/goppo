@@ -21,7 +21,7 @@ struct Tenant_Banner: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 
-                Text("Whatsapp : \(tenant.phone_number)")
+                Text("Whatsapp : \(tenant.phoneNumber)")
                     .foregroundColor(Color.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -30,15 +30,15 @@ struct Tenant_Banner: View {
     }
 }
 
-#Preview {
-    Tenant_Banner(tenant: Tenant(id: 1,
-                                 name: "Kedai Aneka Rasa",
-                                 operation_time: "08.00 - 14.00",
-                                 phone_number: "085777129912",
-                                 va_number: "085777329932",
-                                 va_bank: "qris_kedai_aneka_rasa",
-                                 imageName : "kedai_aneka_rasa",
-                                 qrisImageName : "BCA"
-                                )
-     )
-}
+//#Preview {
+//    Tenant_Banner(tenant: Tenant(id: 1,
+//                                 name: "Kedai Aneka Rasa",
+//                                 operation_time: "08.00 - 14.00",
+//                                 phone_number: "085777129912",
+//                                 va_number: "085777329932",
+//                                 va_bank: "qris_kedai_aneka_rasa",
+//                                 imageName : "kedai_aneka_rasa",
+//                                 qrisImageName : "BCA"
+//                                )
+//     )
+//}

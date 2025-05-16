@@ -9,32 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct ReceiptView: View {
-    var order: [Int: Int]  // Received from Tenants_Page
-    @Query var menus: [Menu]  // Pass menus to match IDs
+    var order: Order
     
     @State private var isSharing = false
-    
-    var totalPrice: Int {
-        order.reduce(0) { total, entry in
-            let (menuID, quantity) = entry
-            if let menu = menus.first(where: { $0.id == menuID }) {
-                return total + (Int(menu.price) * quantity)
-            }
-            return total
-        }
-    }
-    
-    var orderSummary: String {
-        let items = order.compactMap { (menuID, quantity) -> String? in
-            if let menu = menus.first(where: { $0.id == menuID }) {
-                return "\(menu.name) (\(quantity))"
-            }
-            return nil
-        }
-        
-        return items.joined(separator: ", ") + "."
-    }
-    
     
     var body: some View {
         
@@ -50,10 +27,8 @@ struct ReceiptView: View {
                     }
                     
                     VStack(spacing: 12) {
-                        ForEach(order.keys.sorted(), id: \.self) { menuID in
-                            if let menu = menus.first(where: { $0.id == menuID }) {
-                                ReceiptRow(menu: menu, quantity: order[menuID, default: 0])
-                            }
+                        ForEach(order.orderItems) { item in
+                            ReceiptRow(menu: item.menu, quantity: item.quantity)
                         }
                     }
                     
@@ -64,7 +39,7 @@ struct ReceiptView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                         Spacer()
-                        Text("Rp \(totalPrice)")
+                        Text("Rp \(order.totalPrice.formatted())")
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
@@ -84,7 +59,7 @@ struct ReceiptView: View {
                     
                     VStack {
                         // QR Code
-                        Image("qris_dummy")
+                        order.orderItems.first?.menu.tenant.qrisImage
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 240, height: 240)
@@ -112,7 +87,7 @@ struct ReceiptView: View {
                     .cornerRadius(10)
                 }
                 .sheet(isPresented: $isSharing) {
-                    ActivityViewController(activityItems: [orderSummary])
+                    ActivityViewController(activityItems: [order.orderSummary])
                 }
                 
                 NavigationLink(destination: HomeView()
@@ -128,10 +103,7 @@ struct ReceiptView: View {
     }
 }
 
-#Preview {
-    ReceiptView(
-        order: [1: 2, 2: 1] // 2 of menu ID 1, 1 of menu ID 2
-        
-    )
-}
+//#Preview {
+//    
+//}
 

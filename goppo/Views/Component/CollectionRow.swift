@@ -12,38 +12,12 @@ struct CollectionRow: View {
     @Environment(\.modelContext) private var modelContext // Inject SwiftData context
     
     var collection: Collection
-    var collectionItems: [CollectionItem] // List of all collection items
-    var menus: [Menu]
-    var tenants: [Tenant]
-    
-    var filteredItems: [CollectionItem] {
-        collectionItems.filter { $0.collection_id == collection.id }
-    }
-    
-    //tenant yang ditampilin sesuai dengan collection
-    var tenant: Tenant? {
-        guard let firstItem = filteredItems.first,
-              let menu = menus.first(where: { $0.id == firstItem.menu_id }),
-              let tenant = tenants.first(where: { $0.id == menu.tenant_id }) else {
-            return nil
-        }
-        return tenant
-    }
-    
-    var initialOrder: [Int: Int] {
-        var order: [Int: Int] = [:]
-        for item in filteredItems {
-            order[item.menu_id] = item.quantity
-        }
-        return order
-    }
     
     var body: some View {
         
         NavigationLink(destination: {
-            ReceiptView(order: initialOrder)
+            ReceiptView(order: collection.order)
         }){
-            //ZStack {
                 HStack(spacing: 15.0) {
                     collection.image
                         .resizable()
@@ -60,13 +34,13 @@ struct CollectionRow: View {
                                 .fontWeight(.semibold)
                             //.foregroundStyle(.black)
                             
-                            Text(menuItemsText()) // Dynamically show menu items
+                            Text(collection.order.orderSummary) // Dynamically show menu items
                                 .font(.footnote)
                                 .fontWeight(.regular)
                                 .foregroundStyle(Color.secondary)
                         }
                         
-                            Text("Rp \(collection.total_price, format: .number)")
+                        Text("Rp\(collection.order.totalPrice, format: .number)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                         }
@@ -74,29 +48,7 @@ struct CollectionRow: View {
                     Spacer()
                     }
                 }
-            //}
         }
-    //.background(Color(.tertiarySystemBackground))
-    //.cornerRadius(10)
-    
-    private func menuItemsText() -> String {
-        do {
-            // Fetch all menus from SwiftData
-            let storedMenus = try modelContext.fetch(FetchDescriptor<Menu>())
-            
-            let menuNames = filteredItems.compactMap { item in
-                if let menu = storedMenus.first(where: { $0.id == item.menu_id }) {
-                    return "\(item.quantity)x \(menu.name)"
-                }
-                return nil
-            }
-            
-            return menuNames.isEmpty ? "No items" : menuNames.joined(separator: ", ")
-        } catch {
-            print("Error fetching menus: \(error.localizedDescription)")
-            return "No items"
-        }
-    }
 }
 
 

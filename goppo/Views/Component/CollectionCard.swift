@@ -1,73 +1,72 @@
 
 import SwiftUI
 
-struct Collection_Card: View {@Environment(\.modelContext) private var modelContext // Inject SwiftData context
-    
+struct Collection_Card: View {
     var collection: Collection
-    var collectionItems: [CollectionItem] // List of all collection items
-    var menus: [Menu]
-    var tenants: [Tenant]
-    
-    var filteredItems: [CollectionItem] {
-        collectionItems.filter { $0.collection_id == collection.id }
-    }
-    
-    //tenant yang ditampilin sesuai dengan collection
-    var tenant: Tenant? {
-        guard let firstItem = filteredItems.first,
-              let menu = menus.first(where: { $0.id == firstItem.menu_id }),
-              let tenant = tenants.first(where: { $0.id == menu.tenant_id }) else {
-            return nil
-        }
-        return tenant
-    }
-    
-    var initialOrder: [Int: Int] {
-        var order: [Int: Int] = [:]
-        for item in filteredItems {
-            order[item.menu_id] = item.quantity
-        }
-        return order
-    }
-    
+    @Binding var selectedOrder: Order?
+    @Binding var navigateToReceipt: Bool
+
     var body: some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(.tertiarySystemBackground))
-            
-            VStack(alignment: .leading, spacing: 10.0){
-                collection.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .cornerRadius(10)
-                VStack(alignment: .leading, spacing: 4.0){
+        ZStack(alignment: .bottomTrailing) {
+            // Card background
+            VStack(alignment: .leading, spacing: 8) {
+                // Image
+                GeometryReader { geometry in
+                    collection.image
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.width)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .aspectRatio(1, contentMode: .fit)
+
+                // Texts
+                VStack(alignment: .leading, spacing: 4) {
                     Text(collection.name)
                         .font(.body)
                         .fontWeight(.semibold)
-                        //.foregroundStyle(.black)
-                    Text("Rp \(collection.total_price, format: .number.precision(.fractionLength(0)))")
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(2)
+                    Text("\(collection.countOrderItems()) \(collection.countOrderItems() == 1 ? "item" : "items")")
                         .font(.footnote)
                         .foregroundStyle(Color.secondary)
-                }
-
-                NavigationLink(destination: ReceiptView(order: initialOrder)) {
-                    Text("Pesan")
-                        .foregroundStyle(.white)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 32)
-                        .background(Color.accent)
-                        .cornerRadius(8)
+                        .fontWeight(.regular)
+                        .lineLimit(2)
                 }
             }
             .padding(8)
+            .background(
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color(.tertiarySystemBackground))
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.accentColor, lineWidth: 1)
+                }
+            )
+            .fixedSize(horizontal: true, vertical: false)
+            .onTapGesture {
+                selectedOrder = collection.order
+                navigateToReceipt = true
+            }
+
+            // Ellipsis button navigates to CollectionView
+            if let tenant = collection.order.orderItems.first?.menu.tenant {
+                NavigationLink(destination: Tenants_Page(order: collection.order, tenant: tenant)) {
+                    Image(systemName: "ellipsis")
+                        .rotationEffect(.degrees(0))
+                        .foregroundStyle(.primary)
+                        .frame(width: 40, height: 30)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.white.opacity(0.001))
+                        )
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
         }
-        .frame(width: 115, height: 207)
     }
 }
+
 
 //#Preview {
 //    let sampleCollection = Collection(
@@ -76,12 +75,12 @@ struct Collection_Card: View {@Environment(\.modelContext) private var modelCont
 //        total_price: 50_000,
 //        imageName: "bakso_image"
 //    )
-//    
+//
 //    let sampleItems = [
 //        CollectionItem(id: 1, menu_id: 1, quantity: 1, collection_id: 1),
 //        CollectionItem(id: 2, menu_id: 2, quantity: 2, collection_id: 1),
 //        CollectionItem(id: 3, menu_id: 3, quantity: 1, collection_id: 2) // Not part of this collection
 //    ]
-//    
+//
 //    return Collection_Card(collection: sampleCollection, collectionItems: sampleItems)
 //}

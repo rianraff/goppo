@@ -6,19 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SplashScreenView: View {
     @State private var isActive = false
+    @Environment(\.modelContext) private var context
+    @EnvironmentObject private var appState: AppState
     
     var body: some View {
         if isActive {
             HomeView()
+                .environmentObject(appState)
         } else {
             ZStack {
-                
                 Color.accent
                     .ignoresSafeArea()
-                VStack (spacing: 8){
+                VStack(spacing: 8) {
                     Image("Logo Trans 1")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -27,19 +30,27 @@ struct SplashScreenView: View {
                         .font(Font.custom("FredokaOne-Regular", size: 45))
                         .foregroundStyle(.white)
                 }
-                
             }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    withAnimation{
+            .task {
+                do {
+                    try await SampleDataSeeder.seedIfNeeded(context: context)
+                    // After seeding completes, show home after a brief delay
+                    try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second delay
+                    withAnimation {
+                        isActive = true
+                    }
+                } catch {
+                    print("Seeding error: \(error)")
+                    // Proceed anyway, or handle error accordingly
+                    withAnimation {
                         isActive = true
                     }
                 }
             }
         }
-        
     }
 }
+
 
 #Preview {
     SplashScreenView()

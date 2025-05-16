@@ -11,13 +11,9 @@ import SwiftData
 struct InputCollectionNameView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @Query var collections: [Collection]
     
     @State private var collectionName: String = ""
-    @Binding var newCollectionId: Int?
-    
-    var order: [Int: Int]
-    var menus: [Menu]
+    @Binding var newCollectionId: UUID?
     
     var body: some View {
         VStack(spacing: 16.0) {
@@ -54,11 +50,12 @@ struct InputCollectionNameView: View {
     }
     
     private func saveCollection() {
-        guard !collectionName.isEmpty else { return }
-        
-        let newCollectionID = Int(Date().timeIntervalSince1970)
-        let collection = Collection(id: newCollectionID, name: collectionName, total_price: 0, imageName: "default_image")
-        
+        let trimmedName = collectionName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedName.isEmpty else { return }
+
+        let newCollectionID = UUID()
+        let collection = Collection(name: trimmedName)
+
         newCollectionId = newCollectionID
         modelContext.insert(collection)
         dismiss()

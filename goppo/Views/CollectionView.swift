@@ -11,46 +11,29 @@ import SwiftData
 struct CollectionView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var collections: [Collection]
-    @Query var collectionItems: [CollectionItem]
-    @Query var tenants: [Tenant]
-    @Query var menus: [Menu]
 
     var body: some View {
         ZStack {
-            //Color("BackgroundColor")
-            //.ignoresSafeArea()
-                
             VStack {
                 List {
                     ForEach(collections, id: \.id) { collection in
-                        CollectionRow(
-                            collection: collection,
-                            collectionItems: collectionItems,
-                            menus: menus,
-                            tenants: tenants
-                        )
+                        CollectionRow(collection: collection)
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
-                                deleteCollection(collection)
+                                deleteCollection(collection: collection)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
                     }
                 }
-                //.listStyle(.plain)
             }
             .navigationTitle("Koleksi")
             .navigationBarTitleDisplayMode(.inline)
-            //.padding()
         }
     }
     
-    private func deleteCollection(_ collection: Collection) {
-        let relatedItems = collectionItems.filter { $0.collection_id == collection.id }
-        for item in relatedItems {
-            modelContext.delete(item)
-        }
+    private func deleteCollection(collection: Collection) {
         modelContext.delete(collection)
         try? modelContext.save()
     }

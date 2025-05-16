@@ -1,15 +1,15 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 struct HomeView: View {
     
     @Query var collections: [Collection]
-    @Query var collectionItems: [CollectionItem]
     @Query var tenants: [Tenant]
-    @Query var menus: [Menu]
     
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject private var appState: AppState
     
     private let columns = [
         GridItem(.adaptive(minimum: 170))
@@ -17,24 +17,16 @@ struct HomeView: View {
     
     @State private var searchText: String = ""
     @State private var showReminder = false
-    
     @State private var showReminderSheet:Bool = false
     
-    var filteredTenants: [Tenant] {
-        if searchText.isEmpty {
-            return tenants
-        } else {
-            return tenants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
-    }
-    
-    
+    @State var selectedOrder: Order? = nil
+    @State private var navigateToReceipt: Bool = false
     
     var body: some View {
         
         NavigationStack{
             ZStack {
-                Color("BackgroundColor") // Warna background
+                Color("BackgroundColor")
                     .ignoresSafeArea()
                 
                 ScrollView(){
@@ -63,20 +55,16 @@ struct HomeView: View {
                                 
                             }
                             else {
-                                
                                 VStack(alignment: .leading, spacing: 10){
-                                    
-                                    // get collectionIds from collectionItems
-                                    let collectionItemCollectionIDs = collectionItems.map(\.collection_id)
-                                    HStack {
-                                        ForEach(
-                                            collections
-                                                .filter { collectionItemCollectionIDs.contains($0.id) }
-                                                .prefix(3),
-                                            id: \.id
-                                        ) { collection in
-                                            Collection_Card(collection: collection, collectionItems: collectionItems, menus: menus, tenants: tenants)
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: 12) {
+                                            ForEach(collections, id: \.id) { collection in
+                                                Collection_Card(collection: collection,
+                                                                selectedOrder: $selectedOrder,
+                                                                navigateToReceipt: $navigateToReceipt)
+                                            }
                                         }
+                                        .padding(.horizontal, 2)
                                     }
                                     
                                     HStack{
@@ -88,6 +76,7 @@ struct HomeView: View {
                                         }
                                     }
                                 }
+                                .frame(height: 225)
                             }
                         }
                         
@@ -95,72 +84,39 @@ struct HomeView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        //ini jadi grid view
-                        
-                        if filteredTenants.isEmpty {
-                            Text("Tenant tidak ditemukan")
-                                .foregroundStyle(.secondary)
-                                .font(.footnote)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                        } else {
-                            LazyVGrid(columns: columns, spacing: 8) {
-                                ForEach(filteredTenants.sorted(by: {$0.name < $1.name}), id: \.id) { tenant in
-                                    NavigationLink(destination: Tenants_Page(tenant: tenant)) {
-                                        Tenant_Card(tenant: tenant)
-                                    }
-                                }
+                        LazyVGrid(columns: columns, spacing: 8) {
+                            ForEach(tenants, id: \.id) { tenant in
+                                Tenant_Card(tenant: tenant, order: Order(orderItems: [OrderItem]()))
                             }
                         }
                         
                     }
                     .padding()
-                    //            .navigationTitle("Home")
-                    //            .navigationBarHidden(true)
-                    .toolbar{
-                        ToolbarItem(placement: .navigationBarLeading){
-                            
-//                            HStack{
-//                                Image("Logo Header")
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .frame(maxHeight: .infinity)
-//                                
-//                                Spacer()
-//                            }
-                            
-                            Text("GOPPO")
-                                .font(Font.custom("FredokaOne-Regular", size: 32))
-                                .foregroundStyle(Color.accent)
-                        }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Button {
-                                showReminderSheet = true
-                            } label: {
-                                HStack(spacing: 4){
-                                    Text("Atur Pengingat")
-                                    Image(systemName: "bell.fill")
-                                }
-                                .font(.subheadline)
-                                .foregroundStyle(.accent)
-                            }
-                        }
-                    }
                     .sheet(isPresented: $showReminderSheet){
                         ReminderView(showReminder: $showReminder)
                     }
-                    .task {
-                        await seedMenuDatabase(context: modelContext)
-                        await seedTenantDatabase(context: modelContext)
-                    }
                 }
+                
+            }
+            
+            NavigationLink(
+                destination: selectedOrder.map { ReceiptView(order: $0) },
+                isActive: $navigateToReceipt
+            ) {
+                EmptyView()
+            }
+            .hidden()
+        }
+        .onAppear {
+            // Check if we have a pending order to display from an intent
+            if let pendingOrder = appState.pendingSelectedOrder, appState.shouldNavigateToReceipt {
+                self.selectedOrder = pendingOrder
+                self.navigateToReceipt = true
+                
+                // Reset the flags once we've handled them
+                appState.pendingSelectedOrder = nil
+                appState.shouldNavigateToReceipt = false
             }
         }
     }
 }
-
-//#Preview {
-//    HomeView()
-//}
